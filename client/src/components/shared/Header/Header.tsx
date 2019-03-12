@@ -1,22 +1,30 @@
 import React from 'react';
+import styled from 'styled-components';
+import {media} from '../../../utils';
+
+export const Header = styled.header`
+	background-color: red;
+
+	${media['medium']`
+		background: black;
+		color: white;
+	`}
+`;
 
 const renderLinks = (links: string[]) => (
 	links.map(link => (
-		<li>
+		<li key={link}>
 			<a href="/">{link}</a>
 		</li>
 	))
 );
 
-const Header = () => (
-	<header>
+export default () => (
+	<Header>
 		<nav>
 			<ul>
 				{renderLinks(['Home', 'Poems', 'About'])}
 			</ul>
 		</nav>
-	</header>
+	</Header>
 );
-
-
-export default Header;
