@@ -1,30 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
-import {media} from '../../../utils';
-
-export const Header = styled.header`
-	background-color: red;
-
-	${media['medium']`
-		background: black;
-		color: white;
-	`}
-`;
-
-const renderLinks = (links: string[]) => (
-	links.map(link => (
-		<li key={link}>
-			<a href="/">{link}</a>
-		</li>
-	))
-);
+import {Header, Navigation} from './style';
+import List from './List';
 
 export default () => (
 	<Header>
-		<nav>
-			<ul>
-				{renderLinks(['Home', 'Poems', 'About'])}
-			</ul>
-		</nav>
+		<Navigation>
+			<List
+				links={[
+					{id: '1', name: 'home', path: '/'},
+					{id: '2', name: 'poems', path: '/poems'},
+					{id: '3', name: 'about', path: '/about'},
+				]}
+			/>
+		</Navigation>
 	</Header>
 );

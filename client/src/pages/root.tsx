@@ -1,7 +1,10 @@
 import React from 'react';
+import {Layout} from 'src/components/shared/Layout';
 
 const Root = () => (
-	<div>Root page</div>
+	<Layout>
+		<div>Root page</div>
+	</Layout>
 );
 
 export default Root;
