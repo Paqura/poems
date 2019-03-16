@@ -10,12 +10,15 @@ export const HeaderLink: any = styled.a`
 	padding: 4px 12px;
 	color: #000000;
 	border: 2px solid transparent;
+	padding: 18px 24px;
+	font-size: 18px;
+	letter-spacing: 0.6px;
 
 	&:hover {
-		border: 2px solid #000000;
+		border-bottom: 2px solid #616161;
 	}
 `;
 
 export const ActiveStyle = {
-	border: '2px solid #000000',
+	borderBottom: '2px solid #000000',
 };
