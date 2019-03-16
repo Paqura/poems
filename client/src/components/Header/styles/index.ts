@@ -5,5 +5,7 @@ export const Header = styled.header`
 `;
 
 export const Navigation = styled.nav`
-
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `;
