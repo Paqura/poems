@@ -1,6 +1,6 @@
 import React from 'react';
-import {Header, Navigation} from './style';
 import List from './List';
+import {Header, Navigation} from './styles';
 
 export default () => (
 	<Header>

@@ -6,17 +6,17 @@ import store, {history} from 'src/store';
 import {Normalize} from 'styled-normalize';
 import {Root} from 'src/pages';
 
-const App = () => (
-	<Provider store={store}>
-		<ConnectedRouter history={history}>
-			<Router>
-				<React.Fragment>
-					<Normalize />
-					<Root />
-				</React.Fragment>
-			</Router>
-		</ConnectedRouter>
-	</Provider>
-);
+const
+	App = () =>
+		<Provider store={store}>
+			<ConnectedRouter history={history}>
+				<Router>
+					<React.Fragment>
+						<Normalize />
+						<Root />
+					</React.Fragment>
+				</Router>
+			</ConnectedRouter>
+		</Provider>;
 
 export default App;

@@ -5,11 +5,12 @@ type TProps = {
 	children: React.ReactChildren | React.ReactElement,
 };
 
-const Layout = (props: TProps) => (
-	<>
-		<Header />
-		<div>{props.children}</div>
-	</>
-);
+const
+	Layout = (props: TProps) => (
+		<>
+			<Header />
+			<div>{props.children}</div>
+		</>
+	);
 
 export default Layout;
