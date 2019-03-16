@@ -11,20 +11,13 @@ export const HeaderLink: any = styled.a`
 	padding: 4px 12px;
 	color: #000000;
 	padding: 18px 24px;
-	font-size: 20px;
+	font-size: 22px;
 	letter-spacing: 0.6px;
+	opacity: 0.6;
 
-	&:hover::after {
-		content: '';
-		position: absolute;
-		bottom: 40px;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 16px;
-		height: 16px;
-		border-radius: 50%;
-		border: 2px dashed #000000;
-		border-color: #000000;
-		transition: 200ms;
+	&:hover {
+		opacity: 1;
 	}
 `;
+
+export const ActiveLinkStyle = {opacity: 1};
