@@ -21,7 +21,7 @@ export const PreTitle = styled.h3`
 	display: inline-block;
 	text-align: center;
 	font-size: 36px;
-	text-transform: uppercase;
+	text-transform: lowercase;
 	letter-spacing: 1px;
 	font-weight: 600;
 	border-bottom: 2px solid #000000;
@@ -29,7 +29,7 @@ export const PreTitle = styled.h3`
 `;
 
 export const Title = styled.h1`
-	margin: 16px 0;
+	margin: 0;
 	font-size: 72px;
 	letter-spacing: 1px;
 	font-weight: 900;
