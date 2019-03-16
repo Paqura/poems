@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {ActiveStyle, HeaderLink, Item} from './styles';
+import {HeaderLink, Item} from './styles';
 
 const
 	NavItem = (props: {
@@ -13,9 +13,9 @@ const
 	<Item key={props.data.id}>
 		<HeaderLink
 			exact
+			activeClassName="header-active-link"
 			as={NavLink}
 			to={props.data.path}
-			activeStyle={ActiveStyle}
 		>
 			{props.data.name}
 		</HeaderLink>
