@@ -1,0 +1,28 @@
+{
+	"name": "poems",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Paqura/poems.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Paqura/poems/issues"
+	},
+	"homepage": "https://github.com/Paqura/poems#readme",
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"express": "^4.16.4",
+		"mongoose": "^5.4.19"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.10"
+	}
+}
