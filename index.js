@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 const poemsRouter = require('./routes/api/poems');
 
-app.use('/api', poemsRouter);
+app.use('/api/poems', poemsRouter);
 
 app.listen(PORT, () => console.log(`Server starting on ${PORT} port`));
 
