@@ -5,8 +5,7 @@ import GenericSpinner from './GenericSpinner';
 
 const Home = React.lazy(() => import('./Home'));
 const Poems = React.lazy(() => import('./Poems'));
-
-const About = () => <h1>about</h1>;
+const Admin = React.lazy(() => import('./Admin'));
 
 const
 	Root = () => (
@@ -15,7 +14,7 @@ const
 				<Switch>
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/poems" render={() => <Poems />} />
-					<Route exact path="/about" component={About} />
+					<Route exact path="/admin" render={() => <Admin />} />
 				</Switch>
 			</React.Suspense>
 		</Layout>

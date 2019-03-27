@@ -1,16 +1,7 @@
 const Poem = require('../../models/Poem');
 const {HTTP_STATUS} = require('../../helpers');
 
-const getPoems = async(req, res) => {
-	try {
-		const poems = await Poem.find();
-		res.status(HTTP_STATUS.SUCCESS).json(poems);
-	} catch(error) {
-		res.status(HTTP_STATUS.NOT_FOUND);
-	}
-};
-
-const addPoem = async(req, res) => {
+const add = async(req, res) => {
 	const candidate = new Poem({
 		title: req.body.title,
 		body : req.body.body,
@@ -28,11 +19,33 @@ const addPoem = async(req, res) => {
 	}
 };
 
-const update = async(req, res) => {
+const edit = async(req, res) => {
 	res.send('Update');
 };
 
+const getAll = async(req, res) => {
+	try {
+		const poems = await Poem.find();
+		res.status(HTTP_STATUS.SUCCESS).json(poems);
+	} catch(error) {
+		res.status(HTTP_STATUS.NOT_FOUND);
+	}
+};
+
+const getById = async(req, res) => {
+	try {
+		const candidate = await Poem.findById(req.params.id);
+		res.status(HTTP_STATUS.SUCCESS).json(candidate);
+	} catch(error) {
+		res.status(HTTP_STATUS.NOT_FOUND).json({
+			message: 'NOT_FOUND',
+		});
+	}
+};
+
 module.exports = {
-	addPoem,
-	getPoems,
+	add,
+	edit,
+	getAll,
+	getById,
 };
