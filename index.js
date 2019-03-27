@@ -16,9 +16,11 @@ mongoose.set('useCreateIndex', true);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+const authRouter = require('./routes/api/auth');
 const poemsRouter = require('./routes/api/poems');
 
 app.use('/api/poems', poemsRouter);
+app.use('/api/auth', authRouter);
 
 app.listen(PORT, () => console.log(`Server starting on ${PORT} port`));
 
