@@ -3,14 +3,14 @@ import {Header} from 'src/components/Header';
 
 type TProps = {
 	children: React.ReactChildren | React.ReactElement,
+	show?: boolean,
 };
 
 const
-	Layout = (props: TProps) => (
+	Layout = (props: TProps) =>
 		<>
-			<Header />
+			{props.show && <Header />}
 			<div>{props.children}</div>
 		</>
-	);
 
 export default Layout;

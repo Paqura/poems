@@ -22,6 +22,20 @@ const poemsRouter = require('./routes/api/poems');
 app.use('/api/poems', poemsRouter);
 app.use('/api/auth', authRouter);
 
+app.use(compression());
+
+if(process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		res.sendFile(
+			path.resolve(
+				__dirname, 'client', 'build', 'index.html'
+			)
+		)
+	});
+}
+
 app.listen(PORT, () => console.log(`Server starting on ${PORT} port`));
 
 
