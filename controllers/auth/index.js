@@ -36,10 +36,12 @@ const signUp = async(req, res) => {
 
 const signIn = async(req, res) => {
 	const candidate = await User.findOne({email: req.body.email});
-	const resultOfPasswordMatching = bcrypt.compareSync(req.body.password, candidate.password);
+	let resultOfPasswordMatching = null;
 
 	if(!candidate)
 		return res.status(HTTP_STATUS.NOT_FOUND).json({message: 'EMAIL_IS_NOT_FOUND'});
+
+	resultOfPasswordMatching = bcrypt.compareSync(req.body.password, candidate.password);
 
 	if(resultOfPasswordMatching) {
 		const token = jwt.sign({
