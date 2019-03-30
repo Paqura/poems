@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const compression = require('compression');
 const settings = require('./settings');
 
 const PORT = process.env.PORT || 9000;
