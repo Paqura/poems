@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 const settings = require('./settings');
 
 const PORT = process.env.PORT || 9000;
-
 const app = express();
 
 mongoose.connect(settings.MONGO_URI, { useNewUrlParser: true})
@@ -23,6 +23,7 @@ app.use('/api/poems', poemsRouter);
 app.use('/api/auth', authRouter);
 
 app.use(compression());
+app.use(morgan('combined'))
 
 if(process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
@@ -30,7 +31,7 @@ if(process.env.NODE_ENV === 'production') {
 	app.get('*', (req, res) => {
 		res.sendFile(
 			path.resolve(
-				__dirname, 'client', 'build', 'index.html'
+				__dirname, 'client', 'build', 'index.html',
 			)
 		)
 	});
