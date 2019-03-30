@@ -1,27 +1,34 @@
-import React from 'react'
-import {reduxForm } from 'redux-form'
-import {InputField} from 'src/components/shared/Form';
+import React from 'react';
+import Form from './Form';
+import {connect} from 'react-redux';
+import {signInRequest, moduleName} from 'src/ducks/auth/sign-in';
+import {TAction} from 'src/ducks/typedefs/action';
 
 const
-	SignIn = (props: any) =>
-	<form onSubmit={props.handleSubmit}>
-		<InputField
-			autoFocus
-			type="email"
-			name="email"
-			component="input"
-			placeholder="Email"
-		/>
+	SignIn: any = (props: {
+		signInRequest: (payload: TAction) => void,
 
-		<InputField
-			type="password"
-			name="password"
-			component="input"
-			placeholder="Password"
-		/>
-		<button type="submit">Submit</button>
-	</form>;
+		data: {
+			loading: boolean,
+		},
+	}) => {
+		const
+			signIn = (payload: TAction | any) => props.signInRequest(payload);
 
-export default reduxForm({
-	form: 'sign-in',
-})(SignIn);
+		return (
+			<div>
+				{!props.data.loading
+					? <Form onSubmit={signIn} />
+					: <span>Loading...</span>}
+			</div>
+		);
+	};
+
+export default connect(
+	(state: any) => ({
+		data: state[moduleName]['signIn'],
+	}),
+
+	{signInRequest},
+)(SignIn);
+

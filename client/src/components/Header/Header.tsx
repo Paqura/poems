@@ -4,20 +4,24 @@ import Container from 'src/components/shared/Container';
 import {Header, Navigation} from './styles';
 import {Logo} from './Logo';
 
-export default () => (
-	<Header>
+export default () => {
+	const
+		links = [
+			{id: '1', name: 'home', path: '/', isPublic: true},
+			{id: '2', name: 'poems', path: '/poems', isPublic: true},
+			{id: '3', name: 'admin', path: '/admin', isPublic: true},
+			{id: '4', name: 'sign in', path: '/sign-in', isPublic: true},
+			{id: '5', name: 'sign up', path: '/sign-up', isPublic: true},
+			//{id: '6', name: 'logout', path: '/logout', isPublic: true},
+		].filter(it => it);
+
+	return <Header>
 		<Container>
 			<Navigation>
 				<Logo />
 				<List
-					links={[
-						{id: '1', name: 'home', path: '/'},
-						{id: '2', name: 'poems', path: '/poems'},
-						{id: '3', name: 'admin', path: '/admin'},
-						{id: '4', name: 'auth', path: '/auth'},
-					]}
+					links={links}
 				/>
 			</Navigation>
 		</Container>
-	</Header>
-);
+	</Header>};
