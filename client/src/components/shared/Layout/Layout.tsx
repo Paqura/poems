@@ -4,12 +4,13 @@ import {Header} from 'src/components/Header';
 type TProps = {
 	children: React.ReactChildren | React.ReactElement,
 	show?: boolean,
+	hasRegister: boolean,
 };
 
 const
 	Layout = (props: TProps) =>
 		<>
-			{props.show && <Header />}
+			{props.show && <Header hasRegister={props.hasRegister} />}
 			<div>{props.children}</div>
 		</>
 

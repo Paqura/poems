@@ -8,6 +8,7 @@ const
 			id: string,
 			name: string,
 			path: string,
+			isPublic: boolean,
 		}>,
 	}) =>
 	<List>

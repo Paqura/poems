@@ -26,7 +26,7 @@ const
 
 export default connect(
 	(state: any) => ({
-		data: state[moduleName]['signIn'],
+		data: state[moduleName]['data'],
 	}),
 
 	{signInRequest},

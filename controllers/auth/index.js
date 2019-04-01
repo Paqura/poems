@@ -45,7 +45,8 @@ const signIn = async(req, res) => {
 
 	if(resultOfPasswordMatching) {
 		const token = jwt.sign({
-			name: candidate.name,
+			firstName: candidate.firstName,
+			lastName: candidate.lastName,
 			email: candidate.email,
 			avatar: candidate.avatar,
 			userId: candidate._id
