@@ -52,6 +52,7 @@
 	],
 	"proxy": "http://localhost:9000/",
 	"devDependencies": {
-		"enzyme-adapter-react-16": "^1.11.2"
+		"enzyme-adapter-react-16": "^1.11.2",
+		"jest-styled-components": "^6.3.1"
 	}
 }
