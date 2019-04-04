@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
-import {logoutAction} from 'src/ducks/auth/sign-in';
+import {logoutAction} from 'src/ducks/auth';
 
 class Logout extends React.Component<{logoutAction: Function, pushURL: Function}> {
 	componentDidMount() {

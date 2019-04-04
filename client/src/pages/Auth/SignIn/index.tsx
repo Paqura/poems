@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import {connect} from 'react-redux';
-import {signInRequest, moduleName} from 'src/ducks/auth/sign-in';
+import {signInRequest, moduleName} from 'src/ducks/auth';
 import {TAction} from 'src/ducks/typedefs/action';
 
 const
@@ -19,14 +19,14 @@ const
 			<div>
 				{!props.data.loading
 					? <Form onSubmit={signIn} />
-					: <span>Loading...</span>}
+					: <span>Verifying...</span>}
 			</div>
 		);
 	};
 
 export default connect(
 	(state: any) => ({
-		data: state[moduleName]['data'],
+		data: state[moduleName],
 	}),
 
 	{signInRequest},

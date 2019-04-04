@@ -17,14 +17,16 @@ const signUp = async(req, res) => {
 			lastName: req.body.lastName,
 			email: req.body.email,
 			password: bcrypt.hashSync(password, salt),
-			isAdmin: req.body.isAdmin,
+			isAdmin: req.body.isAdmin || false,
 		});
 
 		try {
 			await newUser.save();
 			res.status(HTTP_STATUS.CREATED).json(newUser)
 		} catch(err) {
-			errorHandler(res, err);
+			res.json({
+				message: err.message,
+			})
 		}
 
 	} else {

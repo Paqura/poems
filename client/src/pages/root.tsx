@@ -3,7 +3,7 @@ import {Layout} from 'src/components/shared/Layout';
 import {Switch, Route} from 'react-router-dom';
 import GenericSpinner from './GenericSpinner';
 import {withRouter} from "react-router";
-import {SignIn, Logout} from './Auth';
+import {Confirm, SignIn, SignUp, Logout} from './Auth';
 import {isAuthRoute, hasRegister} from './helpers';
 
 const Home = React.lazy(() => import('./Home'));
@@ -21,11 +21,13 @@ const
 		<Layout show={isAuthRoute(props.location.pathname)} hasRegister={hasRegister()}>
 			<React.Suspense fallback={<GenericSpinner />}>
 				<Switch>
-					<Route exact path="/sign-in" render={() => <SignIn />} />
-					<Route exact path="/logout" render={() => <Logout />} />
-					<Route exact path="/" render={() => <Home />} />
-					<Route exact path="/poems" render={() => <Poems />} />
-					<Route exact path="/admin" render={() => <Admin />} />
+					<Route exact path="/sign-in" render={props => <SignIn {...props} />} />
+					<Route exact path="/sign-up" render={props => <SignUp {...props} />} />
+					<Route exact path="/confirm" render={props => <Confirm {...props} />} />
+					<Route exact path="/logout" render={props => <Logout {...props} />} />
+					<Route exact path="/" render={props => <Home />} />
+					<Route exact path="/poems" render={props => <Poems />} />
+					<Route exact path="/admin" render={props => <Admin />} />
 				</Switch>
 			</React.Suspense>
 		</Layout>;

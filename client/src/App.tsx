@@ -8,15 +8,15 @@ import {Root} from 'src/pages';
 
 const
 	App = () =>
-		<Provider store={store}>
-			<ConnectedRouter history={history}>
-				<Router>
-					<React.Fragment>
-						<Normalize />
-						<Root />
-					</React.Fragment>
-				</Router>
-			</ConnectedRouter>
-		</Provider>;
+	<Provider store={store}>
+		<ConnectedRouter history={history}>
+			<Router>
+				<React.Fragment>
+					<Normalize />
+					<Root />
+				</React.Fragment>
+			</Router>
+		</ConnectedRouter>
+	</Provider>;
 
 export default App;
