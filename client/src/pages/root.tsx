@@ -18,7 +18,7 @@ export type TRootProps = {
 
 const
 	Root = (props: TRootProps) =>
-		<Layout show={isAuthRoute(props.location.pathname)} hasRegister={hasRegister()} >
+		<Layout show={isAuthRoute(props.location.pathname)} hasRegister={hasRegister()}>
 			<React.Suspense fallback={<GenericSpinner />}>
 				<Switch>
 					<Route exact path="/sign-in" render={() => <SignIn />} />
@@ -31,3 +31,4 @@ const
 		</Layout>;
 
 export default withRouter(Root);
+

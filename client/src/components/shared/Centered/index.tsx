@@ -8,3 +8,4 @@ export default (props: {
 	<Centered style={props.hasAbsolute && AbsoluteStyle}>
 		{props.children}
 	</Centered>;
+

@@ -49,5 +49,8 @@
 		"not ie <= 11",
 		"not op_mini all"
 	],
-	"proxy": "http://localhost:9000/"
+	"proxy": "http://localhost:9000/",
+	"devDependencies": {
+		"tslint-config-airbnb": "^5.11.1"
+	}
 }
