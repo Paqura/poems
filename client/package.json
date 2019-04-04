@@ -18,6 +18,7 @@
 		"@types/styled-components": "^4.1.12",
 		"axios": "^0.18.0",
 		"connected-react-router": "^6.3.2",
+		"enzyme": "^3.9.0",
 		"jwt-decode": "^2.2.0",
 		"ramda": "^0.26.1",
 		"react": "^16.8.4",
@@ -51,6 +52,8 @@
 	],
 	"proxy": "http://localhost:9000/",
 	"devDependencies": {
-		"tslint-config-airbnb": "^5.11.1"
+		"tslint-config-airbnb": "^5.11.1",
+		"enzyme-adapter-react-16": "^1.11.2",
+		"jest-styled-components": "^6.3.1"
 	}
 }
