@@ -52,8 +52,9 @@
 	],
 	"proxy": "http://localhost:9000/",
 	"devDependencies": {
-		"tslint-config-airbnb": "^5.11.1",
 		"enzyme-adapter-react-16": "^1.11.2",
-		"jest-styled-components": "^6.3.1"
+		"jest-styled-components": "^6.3.1",
+		"tslint": "^5.15.0",
+		"tslint-config-airbnb": "^5.11.1"
 	}
 }

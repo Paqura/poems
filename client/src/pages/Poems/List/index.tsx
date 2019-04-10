@@ -1,13 +1,26 @@
 import React from 'react';
+import Item from './Item';
+import styles from './styles';
+
+type TPoem = {
+	_id: string,
+	title: string,
+	body: string,
+};
+
+type TProps = {
+	data: TPoem[],
+};
 
 const
-	List = (props: {
-		data: any,
-	}) =>
-	<ul>
-		{props.data.map((it: {title: string, body: string}) => (
-			<li key={it.title}>{it.title}</li>
+	List: React.FC<TProps> = (props: TProps) =>
+	<styles.List>
+		{props.data.map((it: any) => (
+			<Item
+				key={it._id}
+				data={it}
+			/>
 		))}
-	</ul>;
+	</styles.List>;
 
 export default List;

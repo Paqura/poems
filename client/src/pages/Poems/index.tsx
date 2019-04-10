@@ -4,22 +4,21 @@ import List from './List';
 import Container from 'src/components/shared/Container';
 
 const
-	PoemsPage = () => {
+	PoemsPage: React.FC<any> = () => {
 		const [poems, setPoems] = useState([]);
 
 		const fetchPoems = async () =>
-			await axios.get('/api')
+			await axios.get('/api/poems')
 				.then((response: any) => setPoems([].concat(response.data)))
-				.catch(err => console.error(err))
+				.catch(err => console.error(err));
 
-		useEffect((): any => {
-			fetchPoems();
-		}, []);
+		useEffect((): any => fetchPoems(), []);
 
 		return (
-		<Container>
-			PoemsPage
-			<List data={poems} />
-		</Container>)};
+			<Container>
+				<List data={poems} />
+			</Container>
+		);
+	};
 
 export default PoemsPage;

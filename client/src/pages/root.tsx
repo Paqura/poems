@@ -26,11 +26,10 @@ const
 					<Route exact path="/confirm" render={props => <Confirm {...props} />} />
 					<Route exact path="/logout" render={props => <Logout {...props} />} />
 					<Route exact path="/" render={props => <Home />} />
-					<Route exact path="/poems" render={props => <Poems />} />
+					<Route exact path="/poems" render={props => <Poems {...props} />} />
 					<Route exact path="/admin" render={props => <Admin />} />
 				</Switch>
 			</React.Suspense>
 		</Layout>;
 
 export default withRouter(Root);
-
