@@ -10,7 +10,7 @@ class Logout extends React.Component<{logoutAction: Function, pushURL: Function}
 	}
 
 	render() {
-		return <div>Logout</div>
+		return <div>Logout</div>;
 	}
 }
 

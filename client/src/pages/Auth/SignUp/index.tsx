@@ -22,7 +22,7 @@ const
 		useEffect(() => {
 			if(props.data.currentUser)
 				location.href = '#/confirm';
-		})
+		});
 
 		return (
 			<div>
@@ -39,8 +39,7 @@ export default connect(
 	}),
 
 	{
+		signUpRequest,
 		pushURL: push,
-		signUpRequest
 	},
 )(SignIn);
-

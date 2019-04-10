@@ -1,5 +1,5 @@
 import React from 'react';
-import {reduxForm } from 'redux-form'
+import {reduxForm} from 'redux-form';
 import {InputField} from 'src/components/shared/Form';
 
 const

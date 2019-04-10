@@ -5,6 +5,6 @@ const
 	Confirm = (props: any) =>
 	<div>
 		<Link to="/sign-in">Confirm</Link>
-	</div>
+	</div>;
 
 export default Confirm;

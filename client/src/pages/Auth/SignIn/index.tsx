@@ -31,4 +31,3 @@ export default connect(
 
 	{signInRequest},
 )(SignIn);
-

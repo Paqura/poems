@@ -2,7 +2,7 @@ import React from 'react';
 import {Layout} from 'src/components/shared/Layout';
 import {Switch, Route} from 'react-router-dom';
 import GenericSpinner from './GenericSpinner';
-import {withRouter} from "react-router";
+import {withRouter} from 'react-router';
 import {Confirm, SignIn, SignUp, Logout} from './Auth';
 import {isAuthRoute, hasRegister} from './helpers';
 
