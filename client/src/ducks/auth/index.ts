@@ -1,7 +1,7 @@
 import {TAction} from 'src/ducks/typedefs/action';
 import {all, call, put, takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
-import API from 'src/api';
+import settings from 'src/settings';
 import jwt_decode from 'jwt-decode';
 
 export type TUserDataFromJWT = {
@@ -43,7 +43,7 @@ export const signUpRequest = (payload: {
 
 const signInSaga = function* (action: TAction): any {
 	try {
-		const response = yield call(axios.post, API.auth.signIn, action.payload);
+		const response = yield call(axios.post, settings.AUTH_API.SING_IN, action.payload);
 		const decodedUserData: TUserDataFromJWT = jwt_decode(response.data.token);
 
 		localStorage.setItem('currentUser', JSON.stringify(decodedUserData));
@@ -67,7 +67,7 @@ const signInSaga = function* (action: TAction): any {
 
 const signUpSaga = function* (action: TAction): any {
 	try {
-		const response = yield call(axios.post, API.auth.signUp, action.payload);
+		const response = yield call(axios.post, settings.AUTH_API.SING_UP, action.payload);
 
 		if(response.statusText === 'Created')
 			yield put({

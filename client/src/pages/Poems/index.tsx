@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import List from './List';
+import settings from 'src/settings';
 import Container from 'src/components/shared/Container';
 
 const
@@ -9,7 +10,7 @@ const
 
 		const fetchPoems = async () => {
 			try {
-				const {data} = await axios.get('/api/poems');
+				const {data} = await axios.get(settings.POEMS_API.GET_ALL);
 				setPoems(data);
 			} catch(error) {
 				console.error(error);
