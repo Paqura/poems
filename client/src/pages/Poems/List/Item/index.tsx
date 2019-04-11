@@ -1,11 +1,13 @@
 import React from 'react';
-import styles from './styles';
+import UI from './styles';
+import {ResponsiveImg} from 'src/components/shared/styles';
 
 type TPoem = {
 	data: {
 		_id: string,
 		title: string,
 		body: string,
+		imgPath: string,
 	},
 
 	key: string,
@@ -13,9 +15,15 @@ type TPoem = {
 
 const
 	Item: React.FC<TPoem> = (props: TPoem) => (
-		<li>
-			{props.data.body}
-		</li>
+		<UI.Item>
+			<div>
+				<ResponsiveImg src={props.data.imgPath} alt={props.data.title}/>
+			</div>
+			<UI.Title>{props.data.title}</UI.Title>
+			<UI.Text>
+				{props.data.body}
+			</UI.Text>
+		</UI.Item>
 	);
 
 export default Item;

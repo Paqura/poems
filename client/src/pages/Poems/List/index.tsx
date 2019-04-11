@@ -6,6 +6,7 @@ type TPoem = {
 	_id: string,
 	title: string,
 	body: string,
+	imgPath: string,
 };
 
 type TProps = {
@@ -13,14 +14,15 @@ type TProps = {
 };
 
 const
-	List: React.FC<TProps> = (props: TProps) =>
-	<styles.List>
-		{props.data.map((it: TPoem) => (
-			<Item
-				key={it._id}
-				data={it}
-			/>
-		))}
-	</styles.List>;
+	List: React.FC<TProps> = (props: TProps) => (
+		<styles.List>
+			{props.data.map((it: TPoem) => (
+				<Item
+					key={it._id}
+					data={it}
+				/>
+			))}
+		</styles.List>
+	);
 
 export default List;
