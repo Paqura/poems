@@ -1,7 +1,7 @@
 import React from 'react';
 import List from './List';
 import Container from 'src/components/shared/Container';
-import {Header, Navigation} from './styles';
+import UI from './styles';
 import {Logo} from './Logo';
 
 export default (props: {
@@ -19,11 +19,14 @@ export default (props: {
 			{id: '6', name: 'logout', path: '/logout', isPublic: true},
 		].filter(it => !excludePaths.includes(it.path));
 
-	return <Header>
-		<Container>
-			<Navigation>
-				<Logo />
-				<List links={links} />
-			</Navigation>
-		</Container>
-	</Header>};
+	return (
+		<UI.Header>
+			<Container>
+				<UI.Navigation>
+					<Logo />
+					<List links={links} />
+				</UI.Navigation>
+			</Container>
+		</UI.Header>
+	);
+};

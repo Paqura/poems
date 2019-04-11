@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import {DefaultList} from 'src/components/shared/styles';
 
-export const List = styled.ul`
+const List = styled(DefaultList)`
 	display: flex;
 	justify-content: flex-end;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 `;
+
+export default {
+	List,
+};

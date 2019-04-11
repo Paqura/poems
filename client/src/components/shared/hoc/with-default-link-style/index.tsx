@@ -18,4 +18,3 @@ export default (Component: any) => (props: {
 		{props.children}
 	</Component>;
 
-

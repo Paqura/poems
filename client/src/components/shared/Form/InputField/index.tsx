@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field} from 'redux-form';
 
-export interface IField {
+export type TField = {
 	autoFocus?: boolean,
 	label?: string,
 	component: React.FC<any> | string,
@@ -11,7 +11,7 @@ export interface IField {
 };
 
 const
-	InputField = (props: IField) =>
+	InputField = (props: TField) =>
 		<div>
 			{props.label && <label
 				htmlFor={props.name}

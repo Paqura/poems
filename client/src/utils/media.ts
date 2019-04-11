@@ -5,9 +5,9 @@ type TSize = {
 };
 
 const size: TSize = {
-	'small' : 400,
-	'medium': 960,
-	'large' : 1240,
+	small : 400,
+	medium: 960,
+	large : 1240,
 };
 
 export default Object.keys(size)
@@ -18,5 +18,5 @@ export default Object.keys(size)
 			}
 		`;
 
-	return acc;
-}, {});
+		return acc;
+	}, {});

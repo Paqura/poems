@@ -4,11 +4,14 @@
 		"indent": [true, "tabs", 2],
 		"ter-indent": [true, "tab"],
 		"curly": [true, "as-needed"],
+		"object-shorthand-properties-first": false,
+		"align": [false, "arguments"],
 		"whitespace": [true, "check-operator"],
 		"object-curly-spacing": [true, "never"],
 		"import-name": false,
 		"variable-name": false,
 		"max-line-length": [true, 140],
-		"one-variable-per-declaration": false
+		"one-variable-per-declaration": false,
+		"no-boolean-literal-compare": false
 	}
 }

@@ -15,7 +15,7 @@ type TProps = {
 const
 	List: React.FC<TProps> = (props: TProps) =>
 	<styles.List>
-		{props.data.map((it: any) => (
+		{props.data.map((it: TPoem) => (
 			<Item
 				key={it._id}
 				data={it}

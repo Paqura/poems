@@ -1,11 +1,10 @@
 import React from 'react';
-import {AbsoluteStyle, Centered} from './styles';
+import UI, {AbsoluteStyle} from './styles';
 
 export default (props: {
 	children: React.ReactNode,
 	hasAbsolute?: boolean,
 }) =>
-	<Centered style={props.hasAbsolute && AbsoluteStyle}>
+	<UI.Centered style={props.hasAbsolute && AbsoluteStyle}>
 		{props.children}
-	</Centered>;
-
+	</UI.Centered>;

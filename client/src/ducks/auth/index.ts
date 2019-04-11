@@ -4,7 +4,7 @@ import axios from 'axios';
 import API from 'src/api';
 import jwt_decode from 'jwt-decode';
 
-export interface IUserDataFromJWT {
+export type TUserDataFromJWT = {
 	firstName: string;
 	lastName : string;
 	email    : string;
@@ -44,7 +44,7 @@ export const signUpRequest = (payload: {
 const signInSaga = function* (action: TAction): any {
 	try {
 		const response = yield call(axios.post, API.auth.signIn, action.payload);
-		const decodedUserData: IUserDataFromJWT = jwt_decode(response.data.token);
+		const decodedUserData: TUserDataFromJWT = jwt_decode(response.data.token);
 
 		localStorage.setItem('currentUser', JSON.stringify(decodedUserData));
 
@@ -61,7 +61,7 @@ const signInSaga = function* (action: TAction): any {
 		yield put({
 			type: ACTION_TYPE.FAILURE,
 			payload: err.response.data.message || err.message,
-		})
+		});
 	}
 };
 
@@ -73,14 +73,14 @@ const signUpSaga = function* (action: TAction): any {
 			yield put({
 				type: ACTION_TYPE.SIGN_UP_SUCCESS,
 				payload: response.statusText,
-			})
+			});
 	} catch(err) {
 		yield put({
 			type: ACTION_TYPE.FAILURE,
 			payload: err.response.data.message || err.message,
-		})
+		});
 	}
-}
+};
 
 export const logoutAction = () => ({
 	type: ACTION_TYPE.LOGOUT,
@@ -95,7 +95,7 @@ export const saga = function* (): any {
 		yield takeEvery(ACTION_TYPE.SIGN_IN_REQUEST, signInSaga),
 		yield takeEvery(ACTION_TYPE.SIGN_UP_REQUEST, signUpSaga),
 		yield takeEvery(ACTION_TYPE.LOGOUT, logoutSaga),
-	])
+	]);
 };
 
 const

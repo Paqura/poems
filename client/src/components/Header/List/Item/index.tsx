@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {ActiveLinkStyle, HeaderLink, Item} from './styles';
+import UI, {ActiveLinkStyle} from './styles';
 
 const
 	NavItem = (props: {
@@ -10,15 +10,15 @@ const
 			name: string,
 		},
 	}) =>
-	<Item key={props.data.id}>
-		<HeaderLink
+	<UI.Item key={props.data.id}>
+		<UI.HeaderLink
 			exact
 			activeStyle={ActiveLinkStyle}
 			as={NavLink}
 			to={props.data.path}
 		>
 			{props.data.name}
-		</HeaderLink>
-	</Item>;
+		</UI.HeaderLink>
+	</UI.Item>;
 
 export default NavItem;

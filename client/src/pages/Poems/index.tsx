@@ -7,12 +7,13 @@ const
 	PoemsPage: React.FC<any> = () => {
 		const [poems, setPoems] = useState([]);
 
-		const fetchPoems = async () =>
-			await axios.get('/api/poems')
-				.then((response: any) => setPoems([].concat(response.data)))
-				.catch(err => console.error(err));
+		const fetchPoems = async () => await axios.get('/api/poems')
+			.then((response: any) => setPoems([].concat(response.data)))
+			.catch(err => console.error(err));
 
-		useEffect((): any => fetchPoems(), []);
+		useEffect((): void => {
+			fetchPoems().then();
+		}, []);
 
 		return (
 			<Container>

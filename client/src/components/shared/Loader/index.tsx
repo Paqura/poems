@@ -1,5 +1,5 @@
 import React from 'react';
-import {SwishSpinner} from "react-spinners-kit";
+import {SwishSpinner} from 'react-spinners-kit';
 
 export default () =>
 	<SwishSpinner

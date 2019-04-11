@@ -1,15 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-
-export const Container: any = styled.div`
-	max-width: 1240px;
-	width: 100%;
-	margin: 0 auto;
-`;
+import UI from './styles';
 
 export default (props: {
 	children: any,
 }) =>
-	<Container>
+	<UI.Container>
 		{props.children}
-	</Container>;
+	</UI.Container>;

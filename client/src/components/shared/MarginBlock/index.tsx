@@ -1,21 +1,21 @@
 import React from 'react';
-import {Block} from './styles';
+import UI from './styles';
 
 const
 	MarginBlock = (props: {
-		children: any,
+		children: React.FC<any>,
 		top?: number,
 		bottom?: number,
 		left?: number,
 		right?: number,
 	}) =>
-	<Block
+	<UI.Block
 		top={props.top}
 		bottom={props.bottom}
 		left={props.left}
 		right={props.right}
 	>
 		{props.children}
-	</Block>;
+	</UI.Block>;
 
 export default MarginBlock;

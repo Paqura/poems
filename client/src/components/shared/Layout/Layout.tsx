@@ -2,7 +2,7 @@ import React from 'react';
 import {Header} from 'src/components/Header';
 
 type TProps = {
-	children: React.ReactChildren | React.ReactElement,
+	children: React.FC<any> | React.ReactElement,
 	show?: boolean,
 	hasRegister: boolean,
 };
@@ -12,6 +12,6 @@ const
 		<>
 			{props.show && <Header hasRegister={props.hasRegister} />}
 			<div>{props.children}</div>
-		</>
+		</>;
 
 export default Layout;

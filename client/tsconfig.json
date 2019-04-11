@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-		"allowJs": true,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -19,5 +19,8 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "extends": "./tsconfig.paths.json"
+  "extends": "./tsconfig.paths.json",
+  "include": [
+    "src"
+  ]
 }
