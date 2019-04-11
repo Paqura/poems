@@ -5,6 +5,7 @@ import GenericSpinner from './GenericSpinner';
 import {withRouter} from 'react-router';
 import {Confirm, SignIn, SignUp, Logout} from './Auth';
 import {isAuthRoute, hasRegister} from './helpers';
+import {withRedirect} from './hoc';
 
 const Home = React.lazy(() => import('./Home'));
 const Poems = React.lazy(() => import('./Poems'));
@@ -21,9 +22,9 @@ const
 		<Layout show={isAuthRoute(props.location.pathname)} hasRegister={hasRegister()}>
 			<React.Suspense fallback={<GenericSpinner />}>
 				<Switch>
-					<Route exact path="/sign-in" render={props => <SignIn {...props} />} />
-					<Route exact path="/sign-up" render={props => <SignUp {...props} />} />
-					<Route exact path="/confirm" render={props => <Confirm {...props} />} />
+					<Route exact path="/sign-in" render={props => withRedirect(props)(SignIn)} />
+					<Route exact path="/sign-up" render={props => withRedirect(props)(SignUp)} />
+					<Route exact path="/confirm" render={props => withRedirect(props)(Confirm)} />
 					<Route exact path="/logout" render={props => <Logout {...props} />} />
 					<Route exact path="/" render={props => <Home />} />
 					<Route exact path="/poems" render={props => <Poems {...props} />} />
