@@ -2,10 +2,11 @@ const Poem = require('../../models/Poem');
 const {HTTP_STATUS} = require('../../helpers');
 
 const add = async(req, res) => {
+	const {body: {title, body, imgPath}} = req;
 	const candidate = new Poem({
-		title: req.body.title,
-		body : req.body.body,
-		imgPath: req.body.imgPath,
+		title: Boolean(title) ? title : '***',
+		body,
+		imgPath,
 	});
 
 	try {
