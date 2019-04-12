@@ -8,6 +8,7 @@ const Item = styled.li`
 	padding: 24px;
 	padding-bottom: 30px;
 	max-width: 600px;
+	width: 100%;
 
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,.03),
 		8px 14px 38px rgba(39,44,49,.06),

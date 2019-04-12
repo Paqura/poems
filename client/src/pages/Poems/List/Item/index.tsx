@@ -1,7 +1,14 @@
 import React from 'react';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
 import UI from './styles';
 import View from './View';
-import {ResponsiveImg} from 'src/components/shared/styles';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
+const ResponsiveImageStyle = {
+	maxWidth: '100%',
+	height: 'auto',
+	objectFit: 'cover',
+};
 
 type TPoem = {
 	data: {
@@ -19,7 +26,12 @@ const
 	Item: React.FC<TPoem> = (props: TPoem) => (
 		<UI.Item>
 			<div>
-				<ResponsiveImg src={props.data.imgPath} alt={props.data.title}/>
+				<LazyLoadImage
+					src={props.data.imgPath}
+					effect="blur"
+					alt={props.data.title}
+					style={ResponsiveImageStyle}
+				/>
 			</div>
 			<UI.Title>{props.data.title}</UI.Title>
 
