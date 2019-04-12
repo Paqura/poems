@@ -1,6 +1,5 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useEffect} from 'react';
 import Item from './Item';
-import Immutable from 'immutable';
 import styles from './styles';
 
 type TPoem = {
@@ -17,8 +16,14 @@ type TProps = {
 
 const
 	List: React.FC<TProps> = (props: TProps) => {
+		const listRef = useRef<HTMLUListElement>(null);
+
+		useEffect(() => {
+			console.log(listRef);
+		},[]);
+
 		return (
-			<styles.List>
+			<styles.List ref={listRef}>
 				{props.data.map((it: TPoem) => (
 					<Item
 						key={it._id}
