@@ -2,7 +2,6 @@ import React from 'react';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import UI from './styles';
 import View from './View';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ResponsiveImageStyle = {
 	maxWidth: '100%',
