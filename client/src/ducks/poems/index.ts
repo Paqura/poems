@@ -58,11 +58,9 @@ export const reducer = (state = new PoemsSchema(), action: TAction) => {
 			.set('loading', false)
 			.set('poems', payload),
 
-		[ACTION_TYPE.FETCH_POEMS_FAILURE]: {
-			...state,
-			loading: false,
-			error: payload,
-		},
+		[ACTION_TYPE.FETCH_POEMS_FAILURE]: state
+			.set('error', payload)
+			.set('loading', false),
 	})[type] || state;
 };
 
