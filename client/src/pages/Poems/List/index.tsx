@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import Item from './Item';
 import styles from './styles';
 
@@ -7,6 +7,7 @@ type TPoem = {
 	title: string,
 	body: string,
 	imgPath: string,
+	views: [string],
 };
 
 type TProps = {
@@ -14,15 +15,17 @@ type TProps = {
 };
 
 const
-	List: React.FC<TProps> = (props: TProps) => (
-		<styles.List>
-			{props.data.map((it: TPoem) => (
-				<Item
-					key={it._id}
-					data={it}
-				/>
-			))}
-		</styles.List>
-	);
+	List: React.FC<TProps> = (props: TProps) => {
+		return (
+			<styles.List>
+				{props.data.map((it: TPoem) => (
+					<Item
+						key={it._id}
+						data={it}
+					/>
+				))}
+			</styles.List>
+		);
+	};
 
 export default List;

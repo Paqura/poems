@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 const Item = styled.li`
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 24px;
+	padding-bottom: 30px;
 	max-width: 600px;
 
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,.03),

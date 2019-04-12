@@ -21,7 +21,12 @@ const add = async(req, res) => {
 };
 
 const edit = async(req, res) => {
-	res.send('Update');
+	try {
+		await Poem.findOneAndUpdate({_id: req.params.id}, {views: req.body.views});
+		res.status(HTTP_STATUS.SUCCESS).json({message: HTTP_STATUS.SUCCESS});
+	} catch(error) {
+		res.status(HTTP_STATUS.BAD_REQUEST).json({message: error.message});
+	}
 };
 
 const getAll = async(req, res) => {

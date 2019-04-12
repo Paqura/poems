@@ -16,7 +16,9 @@ const poemSchema = new Schema({
 	imgPath: {
 		type: String,
 		required: false,
-	}
+	},
+
+	views: [Schema.Types.ObjectId],
 });
 
 module.exports = mongoose.model('poems', poemSchema);
