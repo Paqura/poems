@@ -19,6 +19,7 @@
 		"axios": "^0.18.0",
 		"connected-react-router": "^6.3.2",
 		"enzyme": "^3.9.0",
+		"immutable": "^4.0.0-rc.12",
 		"jwt-decode": "^2.2.0",
 		"ramda": "^0.26.1",
 		"react": "^16.8.6",
