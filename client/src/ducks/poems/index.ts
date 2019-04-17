@@ -6,12 +6,6 @@ import settings from 'src/settings';
 
 export const moduleName = 'poems';
 
-const findOneAndUpdate = (state: any, id: string) => {
-	const updatedPoemIndex = state.poems.findIndex((poem: any) => poem._id === id);
-	console.log(state.poems[updatedPoemIndex]);
-	return state;
-};
-
 export type TPoemState = {
 	[key: string] : {
 		poems: [],
