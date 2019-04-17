@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
 import Item from './Item';
 import styles from './styles';
 
@@ -7,7 +7,7 @@ type TPoem = {
 	title: string,
 	body: string,
 	imgPath: string,
-	views: [string],
+	views: string[],
 };
 
 type TProps = {
@@ -16,14 +16,9 @@ type TProps = {
 
 const
 	List: React.FC<TProps> = (props: TProps) => {
-		const listRef = useRef<HTMLUListElement>(null);
-
-		useEffect(() => {
-			console.log(listRef);
-		},[]);
 
 		return (
-			<styles.List ref={listRef}>
+			<styles.List>
 				{props.data.map((it: TPoem) => (
 					<Item
 						key={it._id}

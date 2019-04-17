@@ -6,6 +6,12 @@ import settings from 'src/settings';
 
 export const moduleName = 'poems';
 
+const findOneAndUpdate = (state: any, id: string) => {
+	const updatedPoemIndex = state.poems.findIndex((poem: any) => poem._id === id);
+	console.log(state.poems[updatedPoemIndex]);
+	return state;
+};
+
 export type TPoemState = {
 	[key: string] : {
 		poems: [],
@@ -18,6 +24,10 @@ export const ACTION_TYPE = {
 	FETCH_POEMS_RETRY  : 'FETCH_POEMS_RETRY',
 	FETCH_POEMS_SUCCESS: 'FETCH_POEMS_SUCCESS',
 	FETCH_POEMS_FAILURE: 'FETCH_POEMS_FAILURE',
+
+	UPDATE_POEMS_REQUEST: 'UPDATE_POEMS_REQUEST',
+	UPDATE_POEMS_SUCCESS: 'UPDATE_POEMS_SUCCESS',
+	UPDATE_POEMS_FAILURE: 'UPDATE_POEMS_FAILURE',
 };
 
 export const fetchPoems = (): TAction => ({
@@ -38,6 +48,29 @@ export const fetchPoemsSaga = function* (action: TAction): any {
 	}
 };
 
+export const updatePoems = (payload: Object): TAction => ({
+	type: ACTION_TYPE.UPDATE_POEMS_REQUEST,
+	payload,
+});
+
+export const updatePoemsSaga = function* (action: TAction): any {
+	const {payload} = action;
+
+	try {
+		const {data} = yield call(axios.post, settings.POEMS_API.UPDATE_ONE + payload._id, payload);
+
+		yield put({
+			type: ACTION_TYPE.UPDATE_POEMS_SUCCESS,
+			payload: data,
+		});
+	} catch (error) {
+		yield put({
+			type: ACTION_TYPE.UPDATE_POEMS_FAILURE,
+			payload: error.message,
+		});
+	}
+};
+
 const PoemsSchema = Record({
 	error: null,
 	poems: [],
@@ -53,6 +86,9 @@ export const reducer = (state = new PoemsSchema(), action: TAction) => {
 			.set('error', null)
 			.set('loading', true),
 
+		[ACTION_TYPE.UPDATE_POEMS_SUCCESS]: state
+			.set('poems', payload),
+
 		[ACTION_TYPE.FETCH_POEMS_SUCCESS]: state
 			.set('error', null)
 			.set('loading', false)
@@ -67,5 +103,6 @@ export const reducer = (state = new PoemsSchema(), action: TAction) => {
 export const saga = function* (): any {
 	yield all([
 		yield takeEvery(ACTION_TYPE.FETCH_POEMS_REQUEST, fetchPoemsSaga),
+		yield takeEvery(ACTION_TYPE.UPDATE_POEMS_REQUEST, updatePoemsSaga),
 	]);
 };

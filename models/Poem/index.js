@@ -18,7 +18,7 @@ const poemSchema = new Schema({
 		required: false,
 	},
 
-	views: [Schema.Types.ObjectId],
+	views: [String],
 });
 
 module.exports = mongoose.model('poems', poemSchema);

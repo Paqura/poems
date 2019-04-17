@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Header} from 'src/components/Header';
 
 type TProps = {
@@ -8,10 +8,21 @@ type TProps = {
 };
 
 const
-	Layout = (props: TProps) =>
-		<>
-			{props.show && <Header hasRegister={props.hasRegister} />}
-			<div>{props.children}</div>
-		</>;
+	Layout = (props: TProps) => {
+		useEffect(() => {
+			if(props.hasRegister)
+				localStorage.removeItem('anonym');
+
+			if(!props.hasRegister && !localStorage.getItem('anonym'))
+				localStorage.setItem('anonym', Date.now().toString());
+		});
+
+		return (
+			<>
+				{props.show && <Header hasRegister={props.hasRegister} />}
+				<div>{props.children}</div>
+			</>
+		);
+	};
 
 export default Layout;

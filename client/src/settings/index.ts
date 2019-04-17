@@ -5,6 +5,7 @@ export default {
 	},
 
 	POEMS_API: {
-		GET_ALL  : 'api/poems',
+		GET_ALL : 'api/poems',
+		UPDATE_ONE: 'api/poems/edit/',
 	},
 };

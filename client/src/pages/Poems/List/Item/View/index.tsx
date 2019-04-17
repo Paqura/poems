@@ -3,7 +3,7 @@ import UI from './styles';
 import VectorEye from './VectorEye';
 
 type TView = {
-	views: [string],
+	views: string[],
 };
 
 export default (props: TView) => (
