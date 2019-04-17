@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce';
 import {moduleName, updatePoems} from 'src/ducks/poems';
 import UI from './styles';
 import View from './View';
+import { Link } from 'react-router-dom';
 
 const ResponsiveImageStyle = {
 	maxWidth: '100%',
@@ -56,7 +57,11 @@ const
 						style={ResponsiveImageStyle}
 					/>
 				</div>
-				<UI.Title>{props.data.title}</UI.Title>
+				<UI.Title>
+					<Link to={`/poems/${props.data._id}`}>
+						{props.data.title}
+					</Link>
+				</UI.Title>
 
 				<UI.Text>
 					{props.data.body}

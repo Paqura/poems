@@ -10,6 +10,7 @@ import {withRedirect} from './hoc';
 const Home = React.lazy(() => import('./Home'));
 const Poems = React.lazy(() => import('./Poems'));
 const Admin = React.lazy(() => import('./Admin'));
+const Details = React.lazy(() => import('./Details'));
 
 export type TRootProps = {
 	location: {
@@ -28,6 +29,7 @@ const
 					<Route exact path="/logout" render={props => <Logout {...props} />} />
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/poems" render={props => <Poems {...props} />} />
+					<Route exact path="/poems/:id" render={props => <Details {...props} />} />
 					<Route exact path="/admin" render={props => <Admin />} />
 				</Switch>
 			</React.Suspense>
