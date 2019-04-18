@@ -21,7 +21,7 @@ export default (props: TView) => {
 	const [isFavorite, setIsFavorite] = useState(false);
 
 	useEffect(() => {
-		const currentUserId = getCurrentUserFromStorage();
+		const currentUserId = getCurrentUserFromStorage() || localStorage.getItem('anonym');
 		if(!currentUserId) return;
 
 		const isFavoritePoem = Boolean(
@@ -33,7 +33,7 @@ export default (props: TView) => {
 
 	const toggleFavoriteState = () => {
 		setIsFavorite(!isFavorite);
-		const currentUserId = getCurrentUserFromStorage();
+		const currentUserId = getCurrentUserFromStorage() || localStorage.getItem('anonym');
 
 		const newFavoritesList = !isFavorite
 			? [...props.data.favorites, currentUserId]
