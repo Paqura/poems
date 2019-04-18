@@ -4,6 +4,7 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import debounce from 'lodash.debounce';
 import {updatePoems} from 'src/ducks/poems';
 import UI, {ResponsiveImageStyle} from './styles';
+import {getCurrentUserFromStorage} from 'src/pages/helpers';
 import View from './View';
 import Link from 'src/components/shared/DefaultLink';
 
@@ -28,14 +29,14 @@ const
 		const checkScrollPosition = debounce(() => {
 			if(!poemRef.current) return;
 
-			const userId = localStorage.getItem('currentUser') || localStorage.getItem('anonym');
+			const userId = getCurrentUserFromStorage();
 			const element = poemRef.current;
-			const zone = element.offsetTop + Math.floor(element.offsetHeight / 2);
+			const zone = element.offsetTop;
 
 			return window.pageYOffset > zone && userId && !props.data.views.some(view => view === userId)
 				? props.updatePoems({...props.data, views: [...props.data.views, userId]})
 				: false;
-		}, 200);
+		}, 1200);
 
 		useEffect(() => {
 			window.addEventListener('scroll', checkScrollPosition);
