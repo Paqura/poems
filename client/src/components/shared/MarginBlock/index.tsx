@@ -3,7 +3,7 @@ import UI from './styles';
 
 const
 	MarginBlock = (props: {
-		children: React.FC<any>,
+		children: any,
 		top?: number,
 		bottom?: number,
 		left?: number,

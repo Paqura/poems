@@ -33,8 +33,15 @@ const Text = styled.pre`
 	text-align: center;
 `;
 
+export const ResponsiveImageStyle = {
+	maxWidth: '100%',
+	height: 'auto',
+	objectFit: 'cover',
+};
+
 export default {
 	Item,
 	Text,
 	Title,
+	ResponsiveImageStyle,
 };

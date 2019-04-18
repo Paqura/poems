@@ -11,12 +11,11 @@ export default (props: {
 		excludePaths = props.hasRegister ? ['/sign-in', '/sign-up'] : ['/logout'],
 
 		links = [
-			{id: '1', name: 'home', path: '/', isPublic: true},
-			{id: '2', name: 'poems', path: '/poems', isPublic: true},
-			{id: '3', name: 'admin', path: '/admin', isPublic: true},
-			{id: '4', name: 'sign in', path: '/sign-in', isPublic: true},
-			{id: '5', name: 'sign up', path: '/sign-up', isPublic: true},
-			{id: '6', name: 'logout', path: '/logout', isPublic: true},
+			{id: '1', name: 'Главная', path: '/', isPublic: true},
+			{id: '2', name: 'Стихи', path: '/poems', isPublic: true},
+			{id: '3', name: 'Войти', path: '/sign-in', isPublic: true},
+			{id: '4', name: 'Регистрация', path: '/sign-up', isPublic: true},
+			{id: '5', name: 'Выйти', path: '/logout', isPublic: true},
 		].filter(it => !excludePaths.includes(it.path));
 
 	return (

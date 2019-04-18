@@ -1,17 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import debounce from 'lodash.debounce';
-import {moduleName, updatePoems} from 'src/ducks/poems';
-import UI from './styles';
+import {updatePoems} from 'src/ducks/poems';
+import UI, {ResponsiveImageStyle} from './styles';
 import View from './View';
-import { Link } from 'react-router-dom';
-
-const ResponsiveImageStyle = {
-	maxWidth: '100%',
-	height: 'auto',
-	objectFit: 'cover',
-};
+import Link from 'src/components/shared/DefaultLink';
 
 type TPoem = {
 	_id: string,
@@ -45,6 +39,10 @@ const
 
 		useEffect(() => {
 			window.addEventListener('scroll', checkScrollPosition);
+
+			return () => {
+				window.removeEventListener('scroll', checkScrollPosition);
+			};
 		},[]);
 
 		return (
@@ -67,7 +65,7 @@ const
 					{props.data.body}
 				</UI.Text>
 
-				<View views={props.data.views} />
+				<View id={props.data._id} views={props.data.views} />
 			</UI.Item>
 		);
 	};

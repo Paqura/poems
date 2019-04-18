@@ -11,10 +11,12 @@ export default (Component: any) => (props: {
 	to: string,
 	children?: any,
 }) =>
+	<>
 	<Component
 		{...props}
 		style={DefaultStyle}
 	>
 		{props.children}
-	</Component>;
-
+	</Component>
+	{console.log(props)}
+	</>;
