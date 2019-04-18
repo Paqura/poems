@@ -20,12 +20,12 @@ const Item = styled.li`
 
 const Title = styled.h4`
 	width: 100%;
-	font-size: 36px;
+	font-size: 28px;
 	text-align: center;
 `;
 
 const Text = styled.pre`
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.5;
 	font-weight: 500;
 	white-space: pre-line;
