@@ -6,6 +6,7 @@ import MarginBlock from 'src/components/shared/MarginBlock';
 
 import styled from 'styled-components';
 
+// !TODO - сделать более грамотное оформление Комментариев
 const Comments = styled(Link)`
 	color: #999999;
 
