@@ -6,7 +6,6 @@ const Item = styled.li`
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 24px;
-	padding-bottom: 30px;
 	max-width: 600px;
 	width: 100%;
 

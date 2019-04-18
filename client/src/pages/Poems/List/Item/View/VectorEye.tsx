@@ -2,7 +2,7 @@
 import React from 'react';
 
 export default () => (
-	<svg version="1.1" id="Capa_1" x="0px" y="0px" width="20" height="20"
+	<svg version="1.1" id="Capa_1" x="0px" y="0px" width="22" height="22" fill="#6a6a6a"
 	viewBox="0 0 511.999 511.999">
 		<g>
 			<g>

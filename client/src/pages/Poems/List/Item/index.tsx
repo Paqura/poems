@@ -15,6 +15,7 @@ type TPoem = {
 	body: string,
 	imgPath: string,
 	views: string[],
+	favorites: string[],
 };
 
 type TProps = {
@@ -30,7 +31,7 @@ const
 		const checkScrollPosition = debounce(() => {
 			if(!poemRef.current) return;
 
-			const userId: string = getCurrentUserFromStorage();
+			const userId: string = getCurrentUserFromStorage() || localStorage.getItem('anonym');
 			const element: HTMLLIElement = poemRef.current;
 			const zone: number = element.offsetTop;
 
@@ -67,7 +68,10 @@ const
 					{props.data.body}
 				</UI.Text>
 
-				<View id={props.data._id} views={props.data.views} />
+				<View
+					data={props.data}
+					updatePoems={props.updatePoems}
+				/>
 			</UI.Item>
 		);
 	};

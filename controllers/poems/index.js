@@ -22,7 +22,7 @@ const add = async(req, res) => {
 
 const edit = async(req, res) => {
 	try {
-		await Poem.findOneAndUpdate({_id: req.params.id}, {views: req.body.views});
+		await Poem.findOneAndUpdate({_id: req.params.id}, req.body);
 		const data = await Poem.find();
 		res.status(HTTP_STATUS.SUCCESS).json(data);
 	} catch(error) {

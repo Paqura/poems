@@ -1,4 +1,4 @@
 export default () => {
 	const currentUserFromStorage = localStorage.getItem('currentUser');
-	return currentUserFromStorage ? JSON.parse(currentUserFromStorage).userId : localStorage.getItem('anonym');
+	return currentUserFromStorage && JSON.parse(currentUserFromStorage).userId;
 };

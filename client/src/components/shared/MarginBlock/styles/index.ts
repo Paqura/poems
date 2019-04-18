@@ -5,6 +5,7 @@ const Block: any = styled.div`
 	margin-bottom: ${(props: any) => props.bottom ? props.bottom : 0}px;
 	margin-left: ${(props: any) => props.left ? props.left : 0}px;
 	margin-right: ${(props: any) => props.right ? props.right : 0}px;
+	display: ${(props: any) => props.hasInlineStyle ? 'flex' : 'block'};
 `;
 
 export default {
