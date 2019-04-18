@@ -9,4 +9,6 @@ export default {
 		UPDATE_ONE: 'api/poems/edit/',
 		GET_BY_ID: (id: string) => `api/poems/${id}`,
 	},
+
+	DELAY_TIME: 1200,
 };

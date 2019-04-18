@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import debounce from 'lodash.debounce';
 import {updatePoems} from 'src/ducks/poems';
+import settings from 'src/settings';
 import UI, {ResponsiveImageStyle} from './styles';
 import {getCurrentUserFromStorage} from 'src/pages/helpers';
 import View from './View';
@@ -29,14 +30,14 @@ const
 		const checkScrollPosition = debounce(() => {
 			if(!poemRef.current) return;
 
-			const userId = getCurrentUserFromStorage();
-			const element = poemRef.current;
-			const zone = element.offsetTop;
+			const userId: string = getCurrentUserFromStorage();
+			const element: HTMLLIElement = poemRef.current;
+			const zone: number = element.offsetTop;
 
 			return window.pageYOffset > zone && userId && !props.data.views.some(view => view === userId)
 				? props.updatePoems({...props.data, views: [...props.data.views, userId]})
 				: false;
-		}, 1200);
+		}, settings.DELAY_TIME);
 
 		useEffect(() => {
 			window.addEventListener('scroll', checkScrollPosition);
