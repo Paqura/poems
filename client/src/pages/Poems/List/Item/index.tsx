@@ -35,9 +35,9 @@ const
 			const element: HTMLLIElement = poemRef.current;
 			const zone: number = element.offsetTop;
 
-			return window.pageYOffset > zone && userId && !props.data.views.some(view => view === userId)
-				? props.updatePoems({...props.data, views: [...props.data.views, userId]})
-				: false;
+			return userId && !props.data.views.some(view => view === userId) &&
+				window.pageYOffset > zone &&
+				props.updatePoems({...props.data, views: [...props.data.views, userId]});
 		}, settings.DELAY_TIME);
 
 		useEffect(() => {
