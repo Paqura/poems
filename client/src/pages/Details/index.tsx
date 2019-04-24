@@ -4,6 +4,7 @@ import {moduleName, fetchPoem} from 'src/ducks/details';
 import Container from 'src/components/shared/Container';
 import GenericSpinner from 'src/pages/GenericSpinner';
 import Titles from './Titles';
+import Comments from './Comments';
 import UI from './styles';
 
 const
@@ -33,6 +34,8 @@ const
 							</>}
 					</UI.PoemWrapper>
 				</UI.Grid>
+
+				<Comments />
 			</Container>
 		);
 	};
