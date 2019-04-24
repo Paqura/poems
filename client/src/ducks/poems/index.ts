@@ -10,6 +10,7 @@ export type TPoemState = {
 	[key: string] : {
 		poems: [],
 		loading: boolean,
+		error?: string,
 	} & Record<any>,
 };
 
