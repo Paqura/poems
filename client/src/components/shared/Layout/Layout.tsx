@@ -7,7 +7,8 @@ import {TAction} from 'src/ducks/typedefs/action';
 import styled from 'styled-components';
 
 const Main = styled.main`
-	margin: 16px 0;
+	padding: 32px 0;
+	background-color: #ffffff;
 `;
 
 type TProps = {

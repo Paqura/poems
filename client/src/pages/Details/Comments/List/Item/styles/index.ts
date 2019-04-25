@@ -18,6 +18,7 @@ const Text = styled.p`
 	font-size: 14px;
 	margin: 0;
 	padding: 8px;
+	border-radius: 2px;
 	background-color: rgba(248, 246, 246, 0.5);
 `;
 

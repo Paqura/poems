@@ -11,8 +11,8 @@ export type TField = {
 };
 
 const
-	InputField = (props: TField) =>
-		<div>
+	InputField = (props: TField) => (
+		<div style={{display: 'flex'}}>
 			{props.label && <label
 				htmlFor={props.name}
 			>{props.label}</label>}
@@ -23,6 +23,7 @@ const
 				component={props.component}
 				type={props.type}
 			/>
-		</div>;
+		</div>
+	);
 
 export default InputField;

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Form from './Form';
 import List from './List';
 import ErrorBox from './ErrorBox';
+import MarginBlock from 'src/components/shared/MarginBlock';
 
 const
 	Comments = (props: any) => {
@@ -17,26 +18,21 @@ const
 			const {userId, firstName, lastName} = props.currentUser;
 
 			props.addComment({
-				owner  : {
-					id: userId,
-					firstName,
-					lastName,
-				},
-
+				owner  : {id: userId, firstName, lastName},
 				poemRef: props.poemId,
 				text   : payload.text,
 			});
 		};
 
 		return (
-			<section>
+			<MarginBlock top={64}>
 				{isAuth
-					? <Form onSubmit={addComment} />
+					? <MarginBlock top={16} bottom={16}><Form isLoading={props.isLoading} onSubmit={addComment} /></MarginBlock>
 					: <ErrorBox />}
 
 				<List data={props.data} />
 				{props.isLoading && <div>Loading...</div>}
-			</section>
+			</MarginBlock>
 		);
 	};
 
