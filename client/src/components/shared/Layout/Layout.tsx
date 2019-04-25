@@ -4,6 +4,12 @@ import {Header} from 'src/components/Header';
 import {checkAuthUser} from 'src/ducks/auth';
 import {TAction} from 'src/ducks/typedefs/action';
 
+import styled from 'styled-components';
+
+const Main = styled.main`
+	margin: 16px 0;
+`;
+
 type TProps = {
 	children: React.FC<any> | React.ReactElement,
 	show?: boolean,
@@ -26,7 +32,7 @@ const
 		return (
 			<>
 				{props.show && <Header hasRegister={props.hasRegister} />}
-				<main>{props.children}</main>
+				<Main>{props.children}</Main>
 			</>
 		);
 	};

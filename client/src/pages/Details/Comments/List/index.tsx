@@ -1,11 +1,15 @@
 import React from 'react';
 import {DefaultList} from 'src/components/shared/styles';
+import Item from './Item';
 
 const
 	List = (props: any) => (
 		<DefaultList>
+			<header>
+				<h3>Комментарии:</h3>
+			</header>
 			{props.data.map((comment: any) => (
-				<li key={comment._id}>{comment.text}</li>
+				<Item key={comment._id} data={comment} />
 			))}
 		</DefaultList>
 	);

@@ -16,7 +16,7 @@ const MessageWrapper = styled.div`
 
 const
 	ErrorBox = () => (
-		<MarginBlock bottom={24}>
+		<MarginBlock bottom={24} top={64}>
 			<MessageWrapper>
 				<span>Только зарегистрированный пользователь может оставить комментарий</span>
 			</MessageWrapper>
