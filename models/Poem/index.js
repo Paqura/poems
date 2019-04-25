@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -20,6 +19,7 @@ const poemSchema = new Schema({
 
 	views: [String],
 	favorites: [String],
+	comments: [Schema.Types.ObjectId],
 });
 
 module.exports = mongoose.model('poems', poemSchema);

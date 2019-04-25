@@ -1,4 +1,5 @@
 const Poem = require('../../models/Poem');
+const Comment = require('../../models/Comment');
 const {HTTP_STATUS} = require('../../helpers');
 
 const add = async(req, res) => {
@@ -42,7 +43,13 @@ const getAll = async(req, res) => {
 const getById = async(req, res) => {
 	try {
 		const candidate = await Poem.findById(req.params.id);
-		res.status(HTTP_STATUS.SUCCESS).json(candidate);
+		const ids = candidate.comments;
+		const comments = await Comment.find({_id: {$in: ids}}) || [];
+
+		res.status(HTTP_STATUS.SUCCESS).json({
+			data: candidate,
+			comments,
+		});
 	} catch(error) {
 		res.status(HTTP_STATUS.NOT_FOUND).json({
 			message: 'NOT_FOUND',

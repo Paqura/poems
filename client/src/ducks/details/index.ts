@@ -6,6 +6,7 @@ import settings from 'src/settings';
 
 type TPoemState = {
 	poem: Object,
+	comments: string[],
 	loading: boolean,
 	error: string | null,
 } & Record<any>;
@@ -42,6 +43,7 @@ export const saga = function* (): any {
 
 const PoemShema = Record({
 	poem: Object,
+	comments: [],
 	loading: false,
 	error: null,
 });
@@ -55,7 +57,8 @@ export const reducer = (state: TPoemState = new PoemShema(), action: TAction): T
 
 		[ACTION_TYPE.FETCH_POEM_SUCCESS]: state
 			.set('loading', false)
-			.set('poem', payload)
+			.set('comments', payload && payload.comments)
+			.set('poem', payload && payload.data)
 			.set('error', null),
 
 		[ACTION_TYPE.FETCH_POEM_FAILURE]: state

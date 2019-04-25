@@ -19,9 +19,11 @@ app.use(bodyParser.json());
 
 const authRouter = require('./routes/api/auth');
 const poemsRouter = require('./routes/api/poems');
+const commentsRouter = require('./routes/api/comments');
 
 app.use('/api/poems', poemsRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/comments', commentsRouter);
 
 app.use(compression());
 app.use(morgan('combined'))
