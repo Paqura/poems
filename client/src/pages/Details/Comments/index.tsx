@@ -1,18 +1,20 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, {useState, useEffect} from 'react';
 import {addComment} from 'src/ducks/details';
+import {connect} from 'react-redux';
 import Form from './Form';
 import List from './List';
+import ErrorBox from './ErrorBox';
 
 const
 	Comments = (props: any) => {
+		const [isAuth, setIsAuth] = useState(false);
+
+		useEffect(() => {
+			props.currentUser ? setIsAuth(true) : setIsAuth(false);
+		}, []);
+
 		const addComment = (payload: any) => {
-			const candidate: string | null = localStorage.getItem('currentUser');
-
-			if(!candidate)
-				return;
-
-			const {userId, firstName, lastName} = JSON.parse(candidate);
+			const {userId, firstName, lastName} = props.currentUser;
 
 			props.addComment({
 				owner  : {
@@ -28,7 +30,10 @@ const
 
 		return (
 			<section>
-				<Form onSubmit={addComment} />
+				{isAuth
+					? <Form onSubmit={addComment} />
+					: <ErrorBox />}
+
 				<List data={props.data} />
 				{props.isLoading && <div>Loading...</div>}
 			</section>
@@ -36,6 +41,9 @@ const
 	};
 
 export default connect(
-	null,
+	(state: any) => ({
+		currentUser: state.auth.currentUser,
+	}),
+
 	{addComment},
 )(Comments);

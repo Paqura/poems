@@ -15,7 +15,7 @@ const
 
 				<button
 					type="submit"
-					disabled={props.pristine || props.submitting}
+					disabled={props.pristine || props.submitting || props.isDisabled}
 				>
 					Добавить комментарий
 				</button>
@@ -23,6 +23,6 @@ const
 		);
 	};
 
-export default reduxForm({
+export default reduxForm<any>({
 	form: 'add-comment',
 })(CommentForm);

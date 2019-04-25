@@ -21,6 +21,9 @@ const ACTION_TYPE = {
 
 	FAILURE        : 'FAILURE',
 	LOGOUT         : 'LOGOUT',
+
+	CHECK_AUTH_USER: 'CHECK_AUTH_USER',
+	SET_USER_INFO  : 'SET_USER_INFO',
 };
 
 export const signInRequest = (payload: {
@@ -40,6 +43,20 @@ export const signUpRequest = (payload: {
 	type: ACTION_TYPE.SIGN_UP_REQUEST,
 	payload,
 });
+
+export const checkAuthUser = () => ({
+	type: ACTION_TYPE.CHECK_AUTH_USER,
+});
+
+const checkAuthUserSaga = function* (action: TAction): any {
+	const candidate = localStorage.getItem('currentUser');
+	const currentUser = candidate && JSON.parse(candidate);
+
+	yield put({
+		type: ACTION_TYPE.SET_USER_INFO,
+		payload: currentUser,
+	});
+};
 
 const signInSaga = function* (action: TAction): any {
 	try {
@@ -95,6 +112,7 @@ export const saga = function* (): any {
 		yield takeEvery(ACTION_TYPE.SIGN_IN_REQUEST, signInSaga),
 		yield takeEvery(ACTION_TYPE.SIGN_UP_REQUEST, signUpSaga),
 		yield takeEvery(ACTION_TYPE.LOGOUT, logoutSaga),
+		yield takeEvery(ACTION_TYPE.CHECK_AUTH_USER, checkAuthUserSaga),
 	]);
 };
 
@@ -136,5 +154,9 @@ export const reducer = (state = InitialState, action: TAction): any => ({
 		currentUser: null,
 		errorMessage: null,
 		loading: false,
+	},
+
+	[ACTION_TYPE.SET_USER_INFO]: {
+		currentUser: action.payload,
 	},
 })[action.type] || state;
