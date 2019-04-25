@@ -44,6 +44,7 @@ const getById = async(req, res) => {
 	try {
 		const candidate = await Poem.findById(req.params.id);
 		const ids = candidate.comments;
+		// !TODO может стоит вынести в отдельный запрос
 		const comments = await Comment.find({_id: {$in: ids}}) || [];
 
 		res.status(HTTP_STATUS.SUCCESS).json({

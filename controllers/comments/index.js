@@ -34,7 +34,12 @@ const addComment = async(req, res) => {
 	try {
 		const candidate = await newComment.save();
 		await Poem.findOneAndUpdate({_id: req.params.poemId}, {$push: {comments: candidate}});
-		res.json(candidate);
+
+		res.json({
+			_id: candidate._id,
+			text: candidate.text,
+			owner: candidate.owner,
+		});
 	} catch(err) {
 		res.status(HTTP_STATUS.BAD_REQUEST).json({
 			message: HTTP_STATUS.BAD_REQUEST,

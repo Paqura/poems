@@ -10,5 +10,9 @@ export default {
 		GET_BY_ID: (id: string) => `api/poems/${id}`,
 	},
 
+	COMMENTS_API: {
+		ADD: (poemId: string) => `api/comments/add/${poemId}`,
+	},
+
 	DELAY_TIME: 1200,
 };

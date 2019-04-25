@@ -9,9 +9,11 @@ import UI from './styles';
 
 const
 	Details = (props: any) => {
+		const poemId = props.match.params.id;
+
 		useEffect(() => {
-			props.fetchPoem(props.match.params.id);
-		}, [props.match.params.id]);
+			props.fetchPoem(poemId);
+		}, [poemId]);
 
 		return (
 			<Container>
@@ -20,10 +22,11 @@ const
 						<header>
 							<h2>Все произведения</h2>
 						</header>
-						<Titles params={props.match.params.id} />
+						<Titles params={poemId} />
 					</UI.Sidebar>
+
 					<UI.PoemWrapper>
-						{props.loading && !props.data.length
+						{props.isPoemLoading && !props.data.length
 							? <GenericSpinner />
 
 							: <>
@@ -35,7 +38,11 @@ const
 					</UI.PoemWrapper>
 				</UI.Grid>
 
-				<Comments />
+				<Comments
+					data={props.comments}
+					poemId={poemId}
+					isLoading={props.isCommentLoading}
+				/>
 			</Container>
 		);
 	};
@@ -43,7 +50,9 @@ const
 export default connect(
 	(state: any) => ({
 		data: state[moduleName].poem,
-		loading: state[moduleName].loading,
+		comments: state[moduleName].comments,
+		isPoemLoading: state[moduleName].isPoemLoading,
+		isCommentLoading: state[moduleName].isCommentLoading,
 		error: state[moduleName].error,
 	}),
 
