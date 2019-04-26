@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Transition} from 'react-transition-group';
 import {BackGround, Hero, PreTitle, Title} from './styles';
-import styled from 'styled-components';
-
-export const Fade: any = styled.div`
-  transition: 5s;
-  opacity: ${(props: any) => (props.state === 'entered' ? 1 : 0)};
-`;
+import {Fade} from 'src/components/shared/Animation';
 
 const
 	Home = () => {
