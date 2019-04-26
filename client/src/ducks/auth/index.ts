@@ -74,7 +74,7 @@ const signInSaga = function* (action: TAction): any {
 			},
 		});
 
-		window.location.href = action.extraParams ? action.extraParams : '/';
+		window.location.href = action.extraParams ? `#${action.extraParams}` : '/';
 	} catch(err) {
 		yield put({
 			type: ACTION_TYPE.FAILURE,
