@@ -28,30 +28,29 @@ const CommentFormInput = styled(Textarea)`
 const renderTextarea = (props: any) => <CommentFormInput {...props.input}/>;
 
 const
-	CommentForm = (props: any) => {
-		return (
-			<form onSubmit={props.handleSubmit}>
-				<header>
-					<h3>Ваш комментарий</h3>
-				</header>
-				<InputField
-					name="text"
-					type="text"
-					component={renderTextarea}
-					placeholder="Комментарий"
-				/>
+	CommentForm: any = (props: any) => (
+		<form onSubmit={props.handleSubmit}>
+			<header>
+				<h3>Ваш комментарий</h3>
+			</header>
 
-				<MarginBlock top={16} bottom={32}>
-					<CommentButton
-						type="submit"
-						disabled={props.pristine || props.submitting || props.isLoading}
-					>
-						Добавить комментарий
-					</CommentButton>
-				</MarginBlock>
-			</form>
-		);
-	};
+			<InputField
+				name="text"
+				type="text"
+				component={renderTextarea}
+				placeholder="Комментарий"
+			/>
+
+			<MarginBlock top={16} bottom={32}>
+				<CommentButton
+					type="submit"
+					disabled={props.pristine || props.submitting || props.isLoading}
+				>
+					Добавить комментарий
+				</CommentButton>
+			</MarginBlock>
+		</form>
+	);
 
 const ExportForm: any =  reduxForm({
 	form: 'add-comment',
