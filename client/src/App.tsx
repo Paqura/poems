@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'connected-react-router';
-import {HashRouter as Router} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import store, {history} from 'src/store';
 import {Normalize} from 'styled-normalize';
 import {Root} from 'src/pages';

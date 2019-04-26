@@ -8,6 +8,8 @@ const
 			<header>
 				<h3>Комментарии:</h3>
 			</header>
+			{!props.data.length && <div>Комметариев ещё нет</div>}
+
 			{props.data.map((comment: any) => (
 				<Item key={comment._id} data={comment} />
 			))}

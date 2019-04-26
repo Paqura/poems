@@ -79,14 +79,14 @@ export const reducer = (state: TPoemState = new PoemShema(), action: TAction): T
 			.set('isCommentLoading', true),
 
 		[ACTION_TYPE.FETCH_POEM_REQUEST]: state
-			.set('loading', true),
+			.set('isPoemLoading', true),
 
 		[ACTION_TYPE.ADD_COMMENT_SUCCESS]: state
 			.set('isCommentLoading', false)
 			.set('comments', [...state.comments, payload]),
 
 		[ACTION_TYPE.FETCH_POEM_SUCCESS]: state
-			.set('loading', false)
+			.set('isPoemLoading', false)
 			.set('comments', payload && payload.comments)
 			.set('poem', payload && payload.data)
 			.set('error', null),
@@ -95,7 +95,7 @@ export const reducer = (state: TPoemState = new PoemShema(), action: TAction): T
 			.set('isCommentLoading', false),
 
 		[ACTION_TYPE.FETCH_POEM_FAILURE]: state
-			.set('loading', false)
+			.set('isPoemLoading', false)
 			.set('error', payload),
 	})[type] || state;
 };

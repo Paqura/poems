@@ -29,9 +29,10 @@ const ACTION_TYPE = {
 export const signInRequest = (payload: {
 	email   : string,
 	password: string,
-}): TAction => ({
+}, prevLocation: string | undefined): TAction => ({
 	type: ACTION_TYPE.SIGN_IN_REQUEST,
 	payload,
+	extraParams: prevLocation,
 });
 
 export const signUpRequest = (payload: {
@@ -48,7 +49,7 @@ export const checkAuthUser = () => ({
 	type: ACTION_TYPE.CHECK_AUTH_USER,
 });
 
-const checkAuthUserSaga = function* (action: TAction): any {
+const checkAuthUserSaga = function* (): any {
 	const candidate = localStorage.getItem('currentUser');
 	const currentUser = candidate && JSON.parse(candidate);
 
@@ -73,7 +74,7 @@ const signInSaga = function* (action: TAction): any {
 			},
 		});
 
-		window.location.href = '/';
+		window.location.href = action.extraParams ? action.extraParams : '/';
 	} catch(err) {
 		yield put({
 			type: ACTION_TYPE.FAILURE,

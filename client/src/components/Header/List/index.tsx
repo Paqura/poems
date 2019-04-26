@@ -17,6 +17,7 @@ const
 	LinksList: React.FC<TProps> = (props: TProps) =>
 	<UI.List>
 		{props.links.map((link: TLink) => <Item key={link.id} data={link} />)}
+		{console.log(props)}
 	</UI.List>;
 
 export default LinksList;

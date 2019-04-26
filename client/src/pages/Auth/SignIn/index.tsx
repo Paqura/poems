@@ -4,16 +4,23 @@ import {connect} from 'react-redux';
 import {signInRequest, moduleName} from 'src/ducks/auth';
 import {TAction} from 'src/ducks/typedefs/action';
 
-const
-	SignIn: any = (props: {
-		signInRequest: (payload: TAction) => void,
+type TProps = {
+	signInRequest: (payload: TAction, prevLocation: string | undefined) => void,
 
-		data: {
-			loading: boolean,
-		},
-	}) => {
+	data: {
+		loading: boolean,
+	},
+
+	location: {
+		state: string | undefined,
+	},
+} & any;
+
+const
+	SignIn: React.FC<TProps> = (props: TProps) => {
 		const
-			signIn = (payload: TAction | any) => props.signInRequest(payload);
+			signIn = (payload: TAction | any) =>
+				props.signInRequest(payload, props.location.state);
 
 		return (
 			<div>
