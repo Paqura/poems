@@ -20,10 +20,10 @@ export type TRootProps = {
 
 const
 	Root = (props: TRootProps) => {
-		const currentUserId = getCurrentUserFromStorage();
+		const currentUser = getCurrentUserFromStorage();
 
 		return (
-			<Context.User.Provider value={currentUserId}>
+			<Context.User.Provider value={currentUser}>
 				<Layout show={isAuthRoute(props.location.pathname)} hasRegister={hasRegister()}>
 					<React.Suspense fallback={<GenericSpinner />}>
 						<Switch>

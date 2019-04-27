@@ -1,13 +1,14 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import {connect} from 'react-redux';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import debounce from 'lodash.debounce';
 import {updatePoems} from 'src/ducks/poems';
 import settings from 'src/settings';
 import UI, {ResponsiveImageStyle} from './styles';
-import {getCurrentUserFromStorage} from 'src/pages/helpers';
+import {getCurrentUserFromStorage, getValueByKey} from 'src/pages/helpers';
 import View from './View';
 import Link from 'src/components/shared/DefaultLink';
+import Context from 'src/context';
 
 type TPoem = {
 	_id: string,
@@ -26,18 +27,19 @@ type TProps = {
 
 const
 	Item: React.FC<any> = (props: TProps) => {
+		const currentUser = useContext(Context.User);
+		const currentUserId: string = getValueByKey(currentUser, 'userId', null) || localStorage.getItem('anonym');
 		const poemRef = useRef<HTMLLIElement>(null);
 
 		const checkScrollPosition = debounce(() => {
 			if(!poemRef.current) return;
 
-			const userId: string = getCurrentUserFromStorage() || localStorage.getItem('anonym');
 			const element: HTMLLIElement = poemRef.current;
 			const zone: number = element.offsetTop;
 
-			return userId && !props.data.views.some(view => view === userId) &&
+			return currentUserId && !props.data.views.some(view => view === currentUserId) &&
 				window.pageYOffset > zone &&
-				props.updatePoems({...props.data, views: [...props.data.views, userId]});
+				props.updatePoems({...props.data, views: [...props.data.views, currentUserId]});
 		}, settings.DELAY_TIME);
 
 		useEffect(() => {
@@ -71,6 +73,7 @@ const
 				<View
 					data={props.data}
 					updatePoems={props.updatePoems}
+					currentUserId={currentUserId}
 				/>
 			</UI.Item>
 		);

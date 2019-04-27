@@ -38,11 +38,11 @@ const
 					</UI.PoemWrapper>
 				</UI.Grid>
 
-				<Comments
+				{!props.isPoemLoading && <Comments
 					data={props.comments}
 					poemId={poemId}
 					isLoading={props.isCommentLoading}
-				/>
+				/>}
 			</Container>
 		);
 	};

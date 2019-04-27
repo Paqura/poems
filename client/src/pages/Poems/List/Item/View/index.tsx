@@ -5,7 +5,6 @@ import VectorLike from './VectorLike';
 import Link from 'src/components/shared/DefaultLink';
 import MarginBlock from 'src/components/shared/MarginBlock';
 import Button from 'src/components/shared/Button';
-import {getCurrentUserFromStorage} from 'src/pages/helpers';
 
 type TView = {
 	data: {
@@ -14,14 +13,15 @@ type TView = {
 		favorites: string[],
 	},
 
+	currentUserId: string,
 	updatePoems: Function,
 };
 
 export default (props: TView) => {
+	const currentUserId = props.currentUserId;
 	const [isFavorite, setIsFavorite] = useState(false);
 
 	useEffect(() => {
-		const currentUserId = getCurrentUserFromStorage() || localStorage.getItem('anonym');
 		if(!currentUserId) return;
 
 		const isFavoritePoem = Boolean(
@@ -33,7 +33,6 @@ export default (props: TView) => {
 
 	const toggleFavoriteState = () => {
 		setIsFavorite(!isFavorite);
-		const currentUserId = getCurrentUserFromStorage() || localStorage.getItem('anonym');
 
 		const newFavoritesList = !isFavorite
 			? [...props.data.favorites, currentUserId]

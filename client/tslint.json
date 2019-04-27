@@ -13,5 +13,8 @@
 		"max-line-length": [true, 140],
 		"one-variable-per-declaration": false,
 		"no-boolean-literal-compare": false
-	}
+	},
+	"exclude": [
+		"node_modules/**"
+	]
 }

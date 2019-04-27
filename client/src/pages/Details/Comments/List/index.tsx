@@ -16,7 +16,7 @@ const
 				{props.data.map((comment: any) => (
 					<CSSTransition
 						key={comment._id}
-						timeout={500}
+						timeout={200}
 						classNames="item"
 					>
 						<Item key={comment._id} data={comment} />

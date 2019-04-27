@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {addComment} from 'src/ducks/details';
 import {connect} from 'react-redux';
 import {reset} from 'redux-form';
@@ -6,18 +6,24 @@ import Form from './Form';
 import List from './List';
 import ErrorBox from './ErrorBox';
 import MarginBlock from 'src/components/shared/MarginBlock';
+import Context from 'src/context';
+import {getValueByKey} from 'src/pages/helpers';
 
 const
 	Comments = (props: any) => {
+		const currentUser = useContext(Context.User);
 		const [isAuth, setIsAuth] = useState(false);
 
 		useEffect(() => {
-			props.currentUser ? setIsAuth(true) : setIsAuth(false);
+			getValueByKey(currentUser, 'userId', null) ? setIsAuth(true) : setIsAuth(false);
 		}, []);
 
 		const addComment = (payload: any) => {
-			// !TODO переписать Context.User, внести туда все нужные данные и брать оттуда
-			const {userId, firstName, lastName} = props.currentUser;
+			const [userId, firstName, lastName] = getValueByKey(
+				currentUser,
+				['userId', 'firstName', 'lastName'],
+				null,
+			);
 
 			props.addComment({
 				owner  : {id: userId, firstName, lastName},
@@ -41,10 +47,4 @@ const
 		);
 	};
 
-export default connect(
-	(state: any) => ({
-		currentUser: state.auth.currentUser,
-	}),
-
-	{addComment, reset},
-)(Comments);
+export default connect(null, {addComment, reset})(Comments);

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import UI from './styles';
 import MarginBlock from 'src/components/shared/MarginBlock';
 import {deleteComment} from 'src/ducks/details';
+import {getValueByKey} from 'src/pages/helpers';
 
 type TComment = {
 	_id: string,
@@ -24,8 +25,8 @@ type TProps = {
 
 const
 	Comment = (props: TProps) => {
-		const currentUserId = useContext(Context.User);
-		const isOwner = Boolean(props.data.owner.id === currentUserId);
+		const currentUser = useContext(Context.User);
+		const isOwner = Boolean(props.data.owner.id === getValueByKey(currentUser, 'userId', null));
 		const deleteComment = () => props.deleteComment(props.data._id);
 
 		return (
