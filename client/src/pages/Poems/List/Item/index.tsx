@@ -48,7 +48,7 @@ const
 			return () => {
 				window.removeEventListener('scroll', checkScrollPosition);
 			};
-		},[]);
+		}, [props.data.views]);
 
 		return (
 			<UI.Item ref={poemRef}>
