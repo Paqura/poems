@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce';
 import {updatePoems} from 'src/ducks/poems';
 import settings from 'src/settings';
 import UI, {ResponsiveImageStyle} from './styles';
-import {getCurrentUserFromStorage, getValueByKey} from 'src/pages/helpers';
+import {getValueByKey} from 'src/pages/helpers';
 import View from './View';
 import Link from 'src/components/shared/DefaultLink';
 import Context from 'src/context';
@@ -37,7 +37,7 @@ const
 			const element: HTMLLIElement = poemRef.current;
 			const zone: number = element.offsetTop;
 
-			return currentUserId && !props.data.views.some(view => view === currentUserId) &&
+			return currentUserId && !props.data.views.filter(view => view === currentUserId).length &&
 				window.pageYOffset > zone &&
 				props.updatePoems({...props.data, views: [...props.data.views, currentUserId]});
 		}, settings.DELAY_TIME);

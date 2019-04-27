@@ -6,7 +6,7 @@ export default {
 
 	POEMS_API: {
 		GET_ALL : 'api/poems',
-		UPDATE_ONE: 'api/poems/edit/',
+		UPDATE_ONE: (id: string) => `api/poems/update/${id}`,
 		GET_BY_ID: (id: string) => `api/poems/${id}`,
 	},
 

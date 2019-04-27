@@ -21,11 +21,10 @@ const add = async(req, res) => {
 	}
 };
 
-const edit = async(req, res) => {
+const update = async(req, res) => {
 	try {
-		await Poem.findOneAndUpdate({_id: req.params.id}, req.body);
-		const data = await Poem.find();
-		res.status(HTTP_STATUS.SUCCESS).json(data);
+		await Poem.updateOne({_id: req.params.id}, req.body);
+		res.status(HTTP_STATUS.SUCCESS).json({message: HTTP_STATUS.SUCCESS});
 	} catch(error) {
 		res.status(HTTP_STATUS.BAD_REQUEST).json({message: error.message});
 	}
@@ -60,7 +59,7 @@ const getById = async(req, res) => {
 
 module.exports = {
 	add,
-	edit,
+	update,
 	getAll,
 	getById,
 };

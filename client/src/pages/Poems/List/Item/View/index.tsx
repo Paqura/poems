@@ -17,7 +17,7 @@ type TView = {
 	updatePoems: Function,
 };
 
-export default (props: TView) => {
+export default React.memo((props: TView) => {
 	const currentUserId = props.currentUserId;
 	const [isFavorite, setIsFavorite] = useState(false);
 
@@ -70,4 +70,4 @@ export default (props: TView) => {
 			</MarginBlock>
 		</UI.View>
 	);
-};
+});

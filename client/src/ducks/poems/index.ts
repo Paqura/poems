@@ -6,6 +6,11 @@ import settings from 'src/settings';
 
 export const moduleName = 'poems';
 
+const updatePoem = (poems: any, updatedPoem: any): any => {
+	const updatedPoemIndex = poems.findIndex((poem: any) => poem._id === updatedPoem._id);
+	return [...poems].map((poem: any, idx: number) => idx === updatedPoemIndex ? updatedPoem : poem);
+};
+
 export type TPoemState = {
 	[key: string] : {
 		poems: [],
@@ -52,11 +57,11 @@ export const updatePoemsSaga = function* (action: TAction): any {
 	const {payload} = action;
 
 	try {
-		const {data} = yield call(axios.post, settings.POEMS_API.UPDATE_ONE + payload._id, payload);
+		yield call(axios.post, settings.POEMS_API.UPDATE_ONE(payload._id), payload);
 
 		yield put({
 			type: ACTION_TYPE.UPDATE_POEMS_SUCCESS,
-			payload: data,
+			payload,
 		});
 	} catch (error) {
 		yield put({
@@ -82,7 +87,7 @@ export const reducer = (state = new PoemsSchema(), action: TAction) => {
 			.set('loading', true),
 
 		[ACTION_TYPE.UPDATE_POEMS_SUCCESS]: state
-			.set('poems', payload),
+			.set('poems', updatePoem(state.poems, payload || {}) || state.poems),
 
 		[ACTION_TYPE.FETCH_POEMS_SUCCESS]: state
 			.set('error', null)
