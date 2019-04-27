@@ -1,41 +1,70 @@
 import React from 'react';
 import {reduxForm} from 'redux-form';
 import {InputField} from 'src/components/shared/Form';
+import MarginBlock from 'src/components/shared/MarginBlock';
+import FormComponent from 'src/pages/Auth/shared/FormComponent';
+
+const renderInputField = (props: any) => <FormComponent.Field {...props.input} {...props}/>;
 
 const
-	Form = (props: any) =>
-	<form onSubmit={props.handleSubmit}>
-		<InputField
-			autoFocus
-			type="text"
-			name="firstName"
-			component="input"
-			placeholder="First Name"
-		/>
+	Form = (props: any) => {
+		const isMainActionDisabled = props.pristine || props.submitting || props.isLoading;
 
-		<InputField
-			type="text"
-			name="lastName"
-			component="input"
-			placeholder="Last Name"
-		/>
+		return (
+			<FormComponent.Wrapper>
+				<header>
+					<h2>Регистрация</h2>
+				</header>
 
-		<InputField
-			type="email"
-			name="email"
-			component="input"
-			placeholder="Email"
-		/>
+				<form onSubmit={props.handleSubmit}>
+					<MarginBlock bottom={16}>
+						<InputField
+							autoFocus
+							type="text"
+							name="firstName"
+							component={renderInputField}
+							placeholder="First Name"
+						/>
+					</MarginBlock>
 
-		<InputField
-			type="password"
-			name="password"
-			component="input"
-			placeholder="Password"
-		/>
+					<MarginBlock bottom={16}>
+						<InputField
+							type="text"
+							name="lastName"
+							component={renderInputField}
+							placeholder="Last Name"
+						/>
+					</MarginBlock>
 
-		<button type="submit">Submit</button>
-	</form>;
+					<MarginBlock bottom={16}>
+						<InputField
+							type="email"
+							name="email"
+							component={renderInputField}
+							placeholder="Email"
+						/>
+					</MarginBlock>
+
+					<MarginBlock bottom={16}>
+						<InputField
+							type="password"
+							name="password"
+							component={renderInputField}
+							placeholder="Password"
+						/>
+					</MarginBlock>
+
+					<FormComponent.Submit
+						type="submit"
+						disabled={isMainActionDisabled}
+					>
+						Submit
+					</FormComponent.Submit>
+				</form>
+			</FormComponent.Wrapper>
+		);
+	};
+
 
 export default reduxForm({
 	form: 'sign-up',

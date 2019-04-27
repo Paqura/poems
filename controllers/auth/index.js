@@ -31,7 +31,7 @@ const signUp = async(req, res) => {
 
 	} else {
 		res.status(HTTP_STATUS.BAD_REQUEST).json({
-			message: 'EMAIL_ALREADY_EXIST',
+			message: 'Этот email уже занят',
 		});
 	}
 };
@@ -41,7 +41,7 @@ const signIn = async(req, res) => {
 	let resultOfPasswordMatching = null;
 
 	if(!candidate)
-		return res.status(HTTP_STATUS.NOT_FOUND).json({message: 'EMAIL_IS_NOT_FOUND'});
+		return res.status(HTTP_STATUS.NOT_FOUND).json({message: 'Введённый email не корректен'});
 
 	resultOfPasswordMatching = bcrypt.compareSync(req.body.password, candidate.password);
 
@@ -57,7 +57,7 @@ const signIn = async(req, res) => {
 		return res.status(HTTP_STATUS.SUCCESS).json({token: `Bearer ${token}`});
 	}
 
-	return res.status(HTTP_STATUS.NOT_AUTH).json({message: 'PASSWORD_IS_WRONG'});
+	return res.status(HTTP_STATUS.NOT_AUTH).json({message: 'Введённый пароль неверный. Повторите попытку'});
 };
 
 module.exports = {

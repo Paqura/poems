@@ -8,6 +8,7 @@ export type TField = {
 	name: string,
 	placeholder?: string,
 	type: string,
+	required?: boolean,
 };
 
 const
@@ -22,6 +23,8 @@ const
 				name={props.name}
 				component={props.component}
 				type={props.type}
+				required={props.required || false}
+				placeholder={props.placeholder}
 			/>
 		</div>
 	);
