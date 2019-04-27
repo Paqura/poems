@@ -12,6 +12,7 @@ export default {
 
 	COMMENTS_API: {
 		ADD: (poemId: string) => `api/comments/add/${poemId}`,
+		DELETE: (id: string) => `api/comments/${id}`,
 	},
 
 	DELAY_TIME: 1200,

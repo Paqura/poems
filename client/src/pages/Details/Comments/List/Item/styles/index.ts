@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Button} from 'src/components/shared/Button';
 
 const Comment = styled.li`
 	padding: 16px;
@@ -22,8 +23,17 @@ const Text = styled.p`
 	background-color: rgba(248, 246, 246, 0.5);
 `;
 
+const DeleteButton = styled(Button)`
+	background-color: #e79191;
+	padding: 8px;
+	border-radius: 2px;
+	font-size: 14px;
+	color: #ffffff;
+`;
+
 export default {
 	Comment,
+	DeleteButton,
 	Author,
 	Text,
 };

@@ -47,8 +47,18 @@ const addComment = async(req, res) => {
 	}
 };
 
+const deleteComment = async(req, res) => {
+	try {
+		await Comment.findById(req.params.id).remove();
+		res.status(HTTP_STATUS.SUCCESS).json({message: HTTP_STATUS.SUCCESS});
+	} catch (error) {
+		res.status(HTTP_STATUS.BAD_REQUEST).json({message: HTTP_STATUS.BAD_REQUEST});
+	}
+};
+
 module.exports = {
 	addComment,
+	deleteComment,
 	getComments,
 	getCommentById,
 };

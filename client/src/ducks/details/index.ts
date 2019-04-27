@@ -14,6 +14,10 @@ type TPoemState = {
 
 export const moduleName = 'details';
 
+const deleteCommentFromState = (comments: any[], commentId: string) => {
+	return comments.filter(comment => comment._id !== commentId);
+};
+
 const ACTION_TYPE = {
 	FETCH_POEM_REQUEST: 'FETCH_POEM_REQUEST',
 	FETCH_POEM_SUCCESS: 'FETCH_POEM_SUCCESS',
@@ -22,6 +26,10 @@ const ACTION_TYPE = {
 	ADD_COMMENT_REQUEST: 'ADD_COMMENT_REQUEST',
 	ADD_COMMENT_SUCCESS: 'ADD_COMMENT_SUCCESS',
 	ADD_COMMENT_FAILURE: 'ADD_COMMENT_FAILURE',
+
+	DELETE_COMMENT_REQUEST: 'DELETE_COMMENT_REQUEST',
+	DELETE_COMMENT_SUCCESS: 'DELETE_COMMENT_SUCCESS',
+	DELETE_COMMENT_FAILURE: 'DELETE_COMMENT_FAILURE',
 };
 
 export const fetchPoem = (id: string) => ({
@@ -29,12 +37,7 @@ export const fetchPoem = (id: string) => ({
 	payload: id,
 });
 
-export const addComment = (payload: any) => ({
-	type: ACTION_TYPE.ADD_COMMENT_REQUEST,
-	payload,
-});
-
-export const fetchPoemSaga = function* (action: TAction): any {
+const fetchPoemSaga = function* (action: TAction): any {
 	const {payload} = action;
 
 	try {
@@ -45,7 +48,12 @@ export const fetchPoemSaga = function* (action: TAction): any {
 	}
 };
 
-export const addCommentSaga = function* (action: TAction): any {
+export const addComment = (payload: any) => ({
+	type: ACTION_TYPE.ADD_COMMENT_REQUEST,
+	payload,
+});
+
+const addCommentSaga = function* (action: TAction): any {
 	const {payload} = action;
 
 	try {
@@ -56,10 +64,27 @@ export const addCommentSaga = function* (action: TAction): any {
 	}
 };
 
+export const deleteComment = (id: string) => ({
+	type: ACTION_TYPE.DELETE_COMMENT_REQUEST,
+	payload: id,
+});
+
+const deleteCommentSaga = function* (action: TAction): any {
+	const {payload} = action;
+
+	try {
+		yield call(axios.delete, settings.COMMENTS_API.DELETE(payload));
+		yield put({type: ACTION_TYPE.DELETE_COMMENT_SUCCESS, payload});
+	} catch(error) {
+		yield put({type: ACTION_TYPE.DELETE_COMMENT_FAILURE, payload: error.message});
+	}
+};
+
 export const saga = function* (): any {
 	yield all([
 		yield takeEvery(ACTION_TYPE.FETCH_POEM_REQUEST, fetchPoemSaga),
 		yield takeEvery(ACTION_TYPE.ADD_COMMENT_REQUEST, addCommentSaga),
+		yield takeEvery(ACTION_TYPE.DELETE_COMMENT_REQUEST, deleteCommentSaga),
 	]);
 };
 
@@ -75,24 +100,31 @@ export const reducer = (state: TPoemState = new PoemShema(), action: TAction): T
 	const {type, payload} = action;
 
 	return ({
+		[ACTION_TYPE.DELETE_COMMENT_SUCCESS]: state
+			.set('comments', deleteCommentFromState(state.comments, payload))
+			.set('error', null),
+
+		[ACTION_TYPE.DELETE_COMMENT_FAILURE]: state
+			.set('error', payload),
+
 		[ACTION_TYPE.ADD_COMMENT_REQUEST]: state
 			.set('isCommentLoading', true),
-
-		[ACTION_TYPE.FETCH_POEM_REQUEST]: state
-			.set('isPoemLoading', true),
 
 		[ACTION_TYPE.ADD_COMMENT_SUCCESS]: state
 			.set('isCommentLoading', false)
 			.set('comments', [...state.comments, payload]),
+
+		[ACTION_TYPE.ADD_COMMENT_FAILURE]: state
+			.set('isCommentLoading', false),
+
+		[ACTION_TYPE.FETCH_POEM_REQUEST]: state
+			.set('isPoemLoading', true),
 
 		[ACTION_TYPE.FETCH_POEM_SUCCESS]: state
 			.set('isPoemLoading', false)
 			.set('comments', payload && payload.comments)
 			.set('poem', payload && payload.data)
 			.set('error', null),
-
-		[ACTION_TYPE.FETCH_POEM_FAILURE]: state
-			.set('isCommentLoading', false),
 
 		[ACTION_TYPE.FETCH_POEM_FAILURE]: state
 			.set('isPoemLoading', false)

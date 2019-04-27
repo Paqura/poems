@@ -16,6 +16,7 @@ const
 		}, []);
 
 		const addComment = (payload: any) => {
+			// !TODO переписать Context.User, внести туда все нужные данные и брать оттуда
 			const {userId, firstName, lastName} = props.currentUser;
 
 			props.addComment({
