@@ -37,7 +37,6 @@ const
 					: <ErrorBox />}
 
 				<List data={props.data} />
-				{props.isLoading && <div>Loading...</div>}
 			</MarginBlock>
 		);
 	};

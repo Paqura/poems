@@ -9,6 +9,24 @@ const Comment = styled.li`
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,.03),
 		8px 14px 38px rgba(39,44,49,.06),
 		1px 3px 8px rgba(39,44,49,.03);
+
+	&.item-enter {
+		opacity: 0;
+	}
+
+	&.item-enter-active {
+		opacity: 1;
+		transition: opacity 500ms ease-in;
+	}
+
+	&.item-exit {
+		opacity: 1;
+	}
+
+	&.item-exit-active {
+		opacity: 0;
+		transition: opacity 200ms ease-in;
+	}
 `;
 
 const Author = styled.h5`
