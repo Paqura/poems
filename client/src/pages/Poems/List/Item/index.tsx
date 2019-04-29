@@ -57,7 +57,7 @@ const
 						src={props.data.imgPath}
 						effect="blur"
 						alt={props.data.title}
-						style={ResponsiveImageStyle}
+						style={{...ResponsiveImageStyle, height: '400px'}}
 					/>
 				</div>
 

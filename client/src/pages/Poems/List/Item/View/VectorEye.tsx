@@ -2,8 +2,8 @@
 import React from 'react';
 
 export default () => (
-	<svg version="1.1" id="Capa_1" x="0px" y="0px" width="22" height="22" fill="#6a6a6a"
-	viewBox="0 0 511.999 511.999">
+	<svg version="1.1" id="Capa_1" x="0px" y="0px" width="18" height="18" fill="#6a6a6a"
+		viewBox="0 0 511.999 511.999">
 		<g>
 			<g>
 				<path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035

@@ -10,25 +10,28 @@ const View = styled.div`
   opacity: 0.8;
 
 	& svg {
-		fill: #6a6a6a;
+		fill: #999797;
 	}
 
 	& svg#like {
+		fill: #e8e8e8;
+		stroke: black;
+
 		&:hover {
 			fill: tomato;
 		}
 	}
 
-	& ._is-active {
+	& #like._is-active {
 		fill: tomato;
 	}
 `;
 
 const Counter = styled.span`
-	font-size: 16px;
+	font-size: 14px;
 	letter-spacing: 0.4px;
 	display: flex;
-	margin-left: 8px;
+	margin-left: 6px;
 	color: #6a6a6a;
 `;
 
