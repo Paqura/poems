@@ -26,6 +26,7 @@ const
 							name="firstName"
 							component={renderInputField}
 							placeholder="First Name"
+							required={true}
 						/>
 					</MarginBlock>
 
@@ -35,6 +36,7 @@ const
 							name="lastName"
 							component={renderInputField}
 							placeholder="Last Name"
+							required={true}
 						/>
 					</MarginBlock>
 
@@ -44,6 +46,7 @@ const
 							name="email"
 							component={renderInputField}
 							placeholder="Email"
+							required={true}
 						/>
 					</MarginBlock>
 
@@ -53,6 +56,7 @@ const
 							name="password"
 							component={renderInputField}
 							placeholder="Password"
+							required={true}
 						/>
 					</MarginBlock>
 

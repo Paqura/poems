@@ -6,6 +6,7 @@ import {TAction} from 'src/ducks/typedefs/action';
 import Back from 'src/pages/Auth/shared/Back';
 import {TState} from 'src/typedefs/state';
 import {TAuth} from 'src/pages/Auth/typedefs/auth';
+import GenericSpinner from 'src/pages/GenericSpinner';
 
 type TProps = {
 	signInRequest: (payload: TAction, prevLocation: string | undefined) => TAction,
@@ -31,7 +32,7 @@ const
 
 				{!props.data.loading
 					? <Form onSubmit={signIn} errorMessage={props.error} />
-					: <span>Verifying...</span>}
+					: <GenericSpinner />}
 			</div>
 		);
 	};
