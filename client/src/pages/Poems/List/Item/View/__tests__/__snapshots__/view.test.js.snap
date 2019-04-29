@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View should return component 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 12px;
+  background-color: #fbfbff;
+  opacity: 0.8;
+}
+
+.c0 svg {
+  fill: #999797;
+}
+
+.c0 svg#like {
+  fill: #e8e8e8;
+  stroke: black;
+}
+
+.c0 svg#like:hover {
+  fill: tomato;
+}
+
+.c0 #like._is-active {
+  fill: tomato;
+}
+
+.c6 {
+  font-size: 14px;
+  -webkit-letter-spacing: 0.4px;
+  -moz-letter-spacing: 0.4px;
+  -ms-letter-spacing: 0.4px;
+  letter-spacing: 0.4px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 6px;
+  color: #6a6a6a;
+}
+
+.c2 {
+  color: #6a6a6a;
+  border-bottom: 1px solid #6a6a6a;
+}
+
+.c2:hover {
+  border-bottom: 1px solid transparent;
+}
+
+.c1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  display: block;
+}
+
+.c3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 16px;
+  display: block;
+}
+
+.c5 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c4 {
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    style={
+      Object {
+        "marginRight": "auto",
+      }
+    }
+  >
+    <a
+      className="c2"
+      href="#/poems/1"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "inherit",
+          "fontSize": "inherit",
+          "textDecoration": "none",
+        }
+      }
+    >
+      Подробнее
+    </a>
+  </div>
+  <div
+    className="c3"
+  >
+    <button
+      className="c4"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+        height="24"
+        id="like"
+        version="1.1"
+        viewBox="0 0 51.997 51.997"
+        width="26"
+        x="0px"
+        xmlSpace="preserve"
+        y="0px"
+      >
+        <g>
+          <path
+            d="M24.85,10.126c2.018-4.783,6.628-8.125,11.99-8.125c7.223,0,12.425,6.179,13.079,13.543
+ c0,0,0.353,1.828-0.424,5.119c-1.058,4.482-3.545,8.464-6.898,11.503L24.85,48L7.402,32.165c-3.353-3.038-5.84-7.021-6.898-11.503
+ c-0.777-3.291-0.424-5.119-0.424-5.119C0.734,8.179,5.936,2,13.159,2C18.522,2,22.832,5.343,24.85,10.126z"
+          />
+        </g>
+      </svg>
+    </button>
+  </div>
+  <div
+    className="c5"
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <svg
+      fill="#6a6a6a"
+      height="18"
+      id="Capa_1"
+      version="1.1"
+      viewBox="0 0 511.999 511.999"
+      width="18"
+      x="0px"
+      y="0px"
+    >
+      <g>
+        <g>
+          <path
+            d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+ c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+ C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+ c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+ C447.361,287.923,358.746,385.406,255.997,385.406z"
+          />
+        </g>
+      </g>
+      <g>
+        <g>
+          <path
+            d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+ s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+ s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"
+          />
+        </g>
+      </g>
+    </svg>
+    <span
+      className="c6"
+    >
+      3
+    </span>
+  </div>
+</div>
+`;
