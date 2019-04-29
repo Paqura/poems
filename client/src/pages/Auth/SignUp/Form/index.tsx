@@ -3,8 +3,9 @@ import {reduxForm} from 'redux-form';
 import {InputField} from 'src/components/shared/Form';
 import MarginBlock from 'src/components/shared/MarginBlock';
 import FormComponent from 'src/pages/Auth/shared/FormComponent';
-
-const renderInputField = (props: any) => <FormComponent.Field {...props.input} {...props}/>;
+import ErrorBox from 'src/pages/Auth/shared/ErrorBox';
+import Header from 'src/pages/Auth/shared/Header';
+import {renderInputField} from 'src/pages/Auth/helpers';
 
 const
 	Form = (props: any) => {
@@ -12,9 +13,7 @@ const
 
 		return (
 			<FormComponent.Wrapper>
-				<header>
-					<h2>Регистрация</h2>
-				</header>
+				<Header title="Регистрация" />
 
 				<form onSubmit={props.handleSubmit}>
 					<MarginBlock bottom={16}>
@@ -58,14 +57,15 @@ const
 						type="submit"
 						disabled={isMainActionDisabled}
 					>
-						Submit
+						Отправить
 					</FormComponent.Submit>
 				</form>
+
+				{props.errorMessage && <ErrorBox error={props.errorMessage} />}
 			</FormComponent.Wrapper>
 		);
 	};
 
-
-export default reduxForm({
+export default reduxForm<any, any>({
 	form: 'sign-up',
 })(Form);

@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {signInRequest, moduleName} from 'src/ducks/auth';
 import {TAction} from 'src/ducks/typedefs/action';
 import Back from 'src/pages/Auth/shared/Back';
+import {TState} from 'src/typedefs/state';
+import {TAuth} from 'src/pages/Auth/typedefs/auth';
 
 type TProps = {
 	signInRequest: (payload: TAction, prevLocation: string | undefined) => void,
@@ -11,6 +13,8 @@ type TProps = {
 	data: {
 		loading: boolean,
 	},
+
+	error: string | undefined,
 
 	location: {
 		state: string | undefined,
@@ -27,17 +31,15 @@ const
 			<div>
 				<Back />
 
-				{props.error && <span>{props.error}</span>}
-
 				{!props.data.loading
-					? <Form onSubmit={signIn} />
+					? <Form onSubmit={signIn} errorMessage={props.error} />
 					: <span>Verifying...</span>}
 			</div>
 		);
 	};
 
 export default connect(
-	(state: any) => ({
+	(state: TState<TAuth>) => ({
 		data: state[moduleName],
 		error: state[moduleName].errorMessage,
 	}),
