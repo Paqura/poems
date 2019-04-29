@@ -3,16 +3,18 @@ import {connect} from 'react-redux';
 import {moduleName, fetchPoems, TPoemState} from 'src/ducks/poems';
 import List from './List';
 import Container from 'src/components/shared/Container';
-import Immutable from 'immutable';
+import {TState} from 'src/typedefs/state';
+import {TAction} from 'src/ducks/typedefs/action';
 
 type TProps = {
-	fetchPoems: Function,
 	poems: [],
 	loading: boolean,
-} & Immutable.Record<any>;
+} & {
+	fetchPoems: () => TAction,
+};
 
 const
-	PoemsPage: React.FC<any> = (props: TProps) => {
+	PoemsPage: React.FC<TProps> = (props: TProps) => {
 		useEffect((): void => {
 			props.fetchPoems();
 		}, []);
@@ -25,8 +27,8 @@ const
 	};
 
 export default connect(
-	(state: TPoemState) => ({
-		poems: state[moduleName].get('poems'),
+	(state: TState<TProps>) => ({
+		poems: state[moduleName].poems,
 		loading: state[moduleName].loading,
 	}),
 

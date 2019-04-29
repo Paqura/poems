@@ -14,9 +14,10 @@ const Styles: any = {
 	alignItems: 'center',
 };
 
-export default () =>
+export default () => (
 	<div style={Styles}>
 		<Centered>
 			<Loader />
 		</Centered>
-	</div>;
+	</div>
+);

@@ -26,7 +26,7 @@ type TProps = {
 };
 
 const
-	Item: React.FC<any> = (props: TProps) => {
+	Item: React.FC<TProps> = (props: TProps) => {
 		const currentUser = useContext(Context.User);
 		const currentUserId: string = getValueByKey(currentUser, 'userId', null) || localStorage.getItem('anonym');
 		const poemRef = useRef<HTMLLIElement>(null);
@@ -60,6 +60,7 @@ const
 						style={ResponsiveImageStyle}
 					/>
 				</div>
+
 				<UI.Title>
 					<Link to={`/poems/${props.data._id}`}>
 						{props.data.title}
