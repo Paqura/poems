@@ -6,10 +6,13 @@ import FormComponent from 'src/pages/Auth/shared/FormComponent';
 import ErrorBox from 'src/pages/Auth/shared/ErrorBox';
 import Header from 'src/pages/Auth/shared/Header';
 import {renderInputField} from 'src/pages/Auth/helpers';
+import {TFormProps} from 'src/pages/Auth/typedefs/form';
+
+type TProps = {errorMessage?: string};
 
 const
-	Form = (props: any) => {
-		const isMainActionDisabled = props.pristine || props.submitting || props.isLoading;
+	Form: React.FC<TProps & TFormProps> = (props: TProps & TFormProps) => {
+		const isMainActionDisabled = props.pristine || props.submitting;
 
 		return (
 			<FormComponent.Wrapper>
@@ -66,6 +69,6 @@ const
 		);
 	};
 
-export default reduxForm<any, any>({
+export default reduxForm<{}, any, string>({
 	form: 'sign-up',
 })(Form);

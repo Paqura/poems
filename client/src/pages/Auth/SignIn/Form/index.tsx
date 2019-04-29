@@ -1,15 +1,18 @@
 import React from 'react';
-import {reduxForm} from 'redux-form';
+import {reduxForm, FormProps} from 'redux-form';
 import {InputField} from 'src/components/shared/Form';
 import MarginBlock from 'src/components/shared/MarginBlock';
 import FormComponent from 'src/pages/Auth/shared/FormComponent';
 import Header from 'src/pages/Auth/shared/Header';
 import ErrorBox from 'src/pages/Auth/shared/ErrorBox';
 import {renderInputField} from 'src/pages/Auth/helpers';
+import {TFormProps} from 'src/pages/Auth/typedefs/form';
+
+type TProps = {errorMessage?: string};
 
 const
-	Form = (props: any) => {
-		const isMainActionDisabled = props.pristine || props.submitting || props.isLoading;
+	Form: React.FC<TProps & TFormProps> = (props: TProps & TFormProps) => {
+		const isMainActionDisabled = props.pristine || props.submitting;
 
 		return (
 			<FormComponent.Wrapper>
@@ -50,8 +53,6 @@ const
 		);
 	};
 
-const EnhancedForm: any = reduxForm({
+export default reduxForm<{}, any, string>({
 	form: 'sign-in',
 })(Form);
-
-export default EnhancedForm;
