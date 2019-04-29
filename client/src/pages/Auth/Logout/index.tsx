@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 import {logoutAction} from 'src/ducks/auth';
+import {TAction} from 'src/ducks/typedefs/action';
 
-class Logout extends React.Component<{logoutAction: Function, pushURL: Function}> {
-	componentDidMount() {
-		this.props.logoutAction();
-		window.location.href = '/';
-	}
+type TProps = {
+	logoutAction: () => TAction,
+};
 
-	render() {
-		return <div>Logout</div>;
-	}
-}
+const
+	Logout = (props: TProps) => {
+		useEffect(() => {
+			props.logoutAction();
+			window.location.href = '/';
+		}, []);
+
+		return <div>Logout...</div>;
+	};
 
 export default connect(null, {logoutAction, pushURL: push})(Logout);

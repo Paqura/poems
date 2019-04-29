@@ -1,6 +1,6 @@
 import React from 'react';
 import Context from 'src/context';
-import {Layout} from 'src/components/shared/Layout';
+import Layout from 'src/components/shared/Layout';
 import {Switch, Route} from 'react-router-dom';
 import GenericSpinner from './GenericSpinner';
 import {withRouter} from 'react-router';

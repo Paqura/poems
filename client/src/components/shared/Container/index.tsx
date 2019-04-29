@@ -2,8 +2,9 @@ import React from 'react';
 import UI from './styles';
 
 export default (props: {
-	children: any,
-}) =>
+	children: React.ReactNode,
+}) => (
 	<UI.Container>
 		{props.children}
-	</UI.Container>;
+	</UI.Container>
+);

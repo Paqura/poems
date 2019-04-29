@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {withRouter, RouteComponentProps} from 'react-router';
+import {withRouter, RouteComponentProps, StaticContext} from 'react-router';
 import UI, {ActiveLinkStyle} from './styles';
 
 type TLink = {
@@ -9,12 +9,10 @@ type TLink = {
 	name: string,
 };
 
-type TProps = RouteComponentProps<any> & {
-	data: TLink,
+type TRouteProps = {};
 
-	location: {
-		pathname: string,
-	},
+type TProps = RouteComponentProps<TRouteProps, StaticContext> & {
+	data: TLink,
 };
 
 const

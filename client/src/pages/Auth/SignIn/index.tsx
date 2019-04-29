@@ -8,7 +8,7 @@ import {TState} from 'src/typedefs/state';
 import {TAuth} from 'src/pages/Auth/typedefs/auth';
 
 type TProps = {
-	signInRequest: (payload: TAction, prevLocation: string | undefined) => void,
+	signInRequest: (payload: TAction, prevLocation: string | undefined) => TAction,
 
 	data: {
 		loading: boolean,
@@ -23,9 +23,7 @@ type TProps = {
 
 const
 	SignIn: React.FC<TProps> = (props: TProps) => {
-		const
-			signIn = (payload: TAction | any) =>
-				props.signInRequest(payload, props.location.state);
+		const signIn = (payload: TAction | any) => props.signInRequest(payload, props.location.state);
 
 		return (
 			<div>

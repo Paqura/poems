@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import Form from './Form';
-import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
 import {signUpRequest, moduleName} from 'src/ducks/auth';
 import {TAction} from 'src/ducks/typedefs/action';
@@ -10,14 +9,13 @@ import {TAuth} from 'src/pages/Auth/typedefs/auth';
 
 type TProps = {
 	error: string | undefined,
-	signUpRequest: (payload: TAction) => void,
+	signUpRequest: (payload: TAction) => TAction,
 
 	data: {
 		currentUser: boolean | null,
 		loading: boolean,
 	},
 
-	pushURL: (url: string) => void,
 } & any;
 
 const
@@ -49,6 +47,5 @@ export default connect(
 
 	{
 		signUpRequest,
-		pushURL: push,
 	},
 )(SignIn);

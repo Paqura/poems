@@ -12,7 +12,7 @@ export type TField = {
 };
 
 const
-	InputField = (props: TField) => (
+	InputField: React.FC<TField> = (props: TField) => (
 		<div style={{display: 'flex'}}>
 			{props.label && <label
 				htmlFor={props.name}
