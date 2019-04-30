@@ -9,6 +9,8 @@ export type TField = {
 	placeholder?: string,
 	type: string,
 	required?: boolean,
+	value?: string,
+	innerRef?: React.Ref<any>,
 };
 
 const
@@ -19,6 +21,7 @@ const
 			>{props.label}</label>}
 
 			<Field
+				ref={props.innerRef}
 				autoFocus={props.autoFocus}
 				name={props.name}
 				component={props.component}

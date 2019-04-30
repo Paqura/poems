@@ -47,6 +47,16 @@ const addComment = async(req, res) => {
 	}
 };
 
+const updateComment = async(req, res) => {
+	try {
+		const candidate = await Comment.findOneAndUpdate({_id: req.params.id}, {$set: {text: req.body.comment}});
+		const updatedComment = {...candidate._doc, text: req.body.comment};
+		res.status(HTTP_STATUS.SUCCESS).json(updatedComment);
+	} catch(error) {
+		res.status(HTTP_STATUS.BAD_REQUEST).json({message: HTTP_STATUS.BAD_REQUEST});
+	}
+};
+
 const deleteComment = async(req, res) => {
 	try {
 		await Comment.findById(req.params.id).remove();
@@ -61,4 +71,5 @@ module.exports = {
 	deleteComment,
 	getComments,
 	getCommentById,
+	updateComment,
 };

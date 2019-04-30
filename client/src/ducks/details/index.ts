@@ -27,6 +27,10 @@ const ACTION_TYPE = {
 	ADD_COMMENT_SUCCESS: 'ADD_COMMENT_SUCCESS',
 	ADD_COMMENT_FAILURE: 'ADD_COMMENT_FAILURE',
 
+	UPDATE_COMMENT_REQUEST: 'UPDATE_COMMENT_REQUEST',
+	UPDATE_COMMENT_SUCCESS: 'UPDATE_COMMENT_SUCCESS',
+	UPDATE_COMMENT_FAILURE: 'UPDATE_COMMENT_FAILURE',
+
 	DELETE_COMMENT_REQUEST: 'DELETE_COMMENT_REQUEST',
 	DELETE_COMMENT_SUCCESS: 'DELETE_COMMENT_SUCCESS',
 	DELETE_COMMENT_FAILURE: 'DELETE_COMMENT_FAILURE',
@@ -64,6 +68,22 @@ const addCommentSaga = function* (action: TAction): any {
 	}
 };
 
+export const saveUpdatedComment = (payload: any) => ({
+	type: ACTION_TYPE.UPDATE_COMMENT_REQUEST,
+	payload,
+});
+
+const saveUpdatedCommentSaga = function* (action: TAction): any {
+	const {payload} = action;
+
+	try {
+		const {data} = yield call(axios.post, settings.COMMENTS_API.UPDATE(payload._id), payload);
+		yield put({type: ACTION_TYPE.UPDATE_COMMENT_SUCCESS, payload: data});
+	} catch(error) {
+		yield put({type: ACTION_TYPE.UPDATE_COMMENT_FAILURE, payload: error.message});
+	}
+};
+
 export const deleteComment = (id: string) => ({
 	type: ACTION_TYPE.DELETE_COMMENT_REQUEST,
 	payload: id,
@@ -84,6 +104,7 @@ export const saga = function* (): any {
 	yield all([
 		yield takeEvery(ACTION_TYPE.FETCH_POEM_REQUEST, fetchPoemSaga),
 		yield takeEvery(ACTION_TYPE.ADD_COMMENT_REQUEST, addCommentSaga),
+		yield takeEvery(ACTION_TYPE.UPDATE_COMMENT_REQUEST, saveUpdatedCommentSaga),
 		yield takeEvery(ACTION_TYPE.DELETE_COMMENT_REQUEST, deleteCommentSaga),
 	]);
 };
@@ -95,6 +116,12 @@ const PoemShema = Record({
 	isPoemLoading: false,
 	error: null,
 });
+
+const modifyComments = (comments: any[], updated: any) => {
+	if(!updated) return comments;
+	const index = comments.findIndex(el => el._id === updated._id);
+	return comments.map((it: any, idx: number) => idx === index ? updated : it);
+};
 
 export const reducer = (state: TPoemState = new PoemShema(), action: TAction): TPoemState => {
 	const {type, payload} = action;
@@ -116,6 +143,19 @@ export const reducer = (state: TPoemState = new PoemShema(), action: TAction): T
 
 		[ACTION_TYPE.ADD_COMMENT_FAILURE]: state
 			.set('isCommentLoading', false),
+
+		[ACTION_TYPE.UPDATE_COMMENT_REQUEST]: state
+			.set('isCommentLoading', true)
+			.set('error', null),
+
+		[ACTION_TYPE.UPDATE_COMMENT_SUCCESS]: state
+			.set('isCommentLoading', false)
+			.set('comments', modifyComments(state.comments, payload))
+			.set('error', null),
+
+		[ACTION_TYPE.UPDATE_COMMENT_FAILURE]: state
+			.set('isCommentLoading', false)
+			.set('error', payload),
 
 		[ACTION_TYPE.FETCH_POEM_REQUEST]: state
 			.set('isPoemLoading', true),

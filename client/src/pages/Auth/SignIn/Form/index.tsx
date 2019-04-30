@@ -6,7 +6,7 @@ import FormComponent from 'src/pages/Auth/shared/FormComponent';
 import Header from 'src/pages/Auth/shared/Header';
 import ErrorBox from 'src/pages/Auth/shared/ErrorBox';
 import {renderInputField} from 'src/pages/Auth/helpers';
-import {TFormProps} from 'src/pages/Auth/typedefs/form';
+import {TFormProps} from 'src/typedefs/form';
 
 type TProps = {errorMessage?: string};
 

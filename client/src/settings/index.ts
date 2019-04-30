@@ -12,6 +12,7 @@ export default {
 
 	COMMENTS_API: {
 		ADD: (poemId: string) => `api/comments/add/${poemId}`,
+		UPDATE: (id: string) => `api/comments/update/${id}`,
 		DELETE: (id: string) => `api/comments/${id}`,
 	},
 

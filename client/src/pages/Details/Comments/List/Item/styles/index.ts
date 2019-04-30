@@ -49,9 +49,19 @@ const DeleteButton = styled(Button)`
 	color: #ffffff;
 `;
 
+const UpdateButton = styled(Button)`
+	background-color: #7c9fff;
+	padding: 8px;
+	border-radius: 2px;
+	font-size: 14px;
+	color: #ffffff;
+	margin-right: 16px;
+`;
+
 export default {
 	Comment,
 	DeleteButton,
+	UpdateButton,
 	Author,
 	Text,
 };
