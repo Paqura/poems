@@ -1,12 +1,14 @@
 import {TAction} from 'src/ducks/typedefs/action';
 import {Record} from 'immutable';
 import {all, call, put, takeEvery} from 'redux-saga/effects';
+import {SagaIterator} from 'redux-saga';
 import axios from 'axios';
 import settings from 'src/settings';
+import {TComment} from 'src/typedefs/comment';
 
 type TPoemState = {
 	poem: Object,
-	comments: string[],
+	comments: TComment[],
 	isCommentLoading: boolean,
 	isPoemLoading: boolean,
 	error: string | null,
@@ -14,7 +16,7 @@ type TPoemState = {
 
 export const moduleName = 'details';
 
-const deleteCommentFromState = (comments: any[], commentId: string) => {
+const deleteCommentFromState = (comments: TComment[], commentId: string) => {
 	return comments.filter(comment => comment._id !== commentId);
 };
 
@@ -41,7 +43,7 @@ export const fetchPoem = (id: string) => ({
 	payload: id,
 });
 
-const fetchPoemSaga = function* (action: TAction): any {
+const fetchPoemSaga = function* (action: TAction): SagaIterator {
 	const {payload} = action;
 
 	try {
@@ -52,12 +54,12 @@ const fetchPoemSaga = function* (action: TAction): any {
 	}
 };
 
-export const addComment = (payload: any) => ({
+export const addComment = (payload: TComment) => ({
 	type: ACTION_TYPE.ADD_COMMENT_REQUEST,
 	payload,
 });
 
-const addCommentSaga = function* (action: TAction): any {
+const addCommentSaga = function* (action: TAction): SagaIterator {
 	const {payload} = action;
 
 	try {
@@ -68,12 +70,15 @@ const addCommentSaga = function* (action: TAction): any {
 	}
 };
 
-export const saveUpdatedComment = (payload: any) => ({
+export const saveUpdatedComment = (payload: {
+	_id: string,
+	comment: string,
+}) => ({
 	type: ACTION_TYPE.UPDATE_COMMENT_REQUEST,
 	payload,
 });
 
-const saveUpdatedCommentSaga = function* (action: TAction): any {
+const saveUpdatedCommentSaga = function* (action: TAction): SagaIterator {
 	const {payload} = action;
 
 	try {
@@ -89,7 +94,7 @@ export const deleteComment = (id: string) => ({
 	payload: id,
 });
 
-const deleteCommentSaga = function* (action: TAction): any {
+const deleteCommentSaga = function* (action: TAction): SagaIterator {
 	const {payload} = action;
 
 	try {
@@ -100,7 +105,7 @@ const deleteCommentSaga = function* (action: TAction): any {
 	}
 };
 
-export const saga = function* (): any {
+export const saga = function* (): SagaIterator {
 	yield all([
 		yield takeEvery(ACTION_TYPE.FETCH_POEM_REQUEST, fetchPoemSaga),
 		yield takeEvery(ACTION_TYPE.ADD_COMMENT_REQUEST, addCommentSaga),
@@ -117,8 +122,9 @@ const PoemShema = Record({
 	error: null,
 });
 
-const modifyComments = (comments: any[], updated: any) => {
+const modifyComments = (comments: TComment[], updated: TComment) => {
 	if(!updated) return comments;
+
 	const index = comments.findIndex(el => el._id === updated._id);
 	return comments.map((it: any, idx: number) => idx === index ? updated : it);
 };
@@ -145,16 +151,13 @@ export const reducer = (state: TPoemState = new PoemShema(), action: TAction): T
 			.set('isCommentLoading', false),
 
 		[ACTION_TYPE.UPDATE_COMMENT_REQUEST]: state
-			.set('isCommentLoading', true)
 			.set('error', null),
 
 		[ACTION_TYPE.UPDATE_COMMENT_SUCCESS]: state
-			.set('isCommentLoading', false)
 			.set('comments', modifyComments(state.comments, payload))
 			.set('error', null),
 
 		[ACTION_TYPE.UPDATE_COMMENT_FAILURE]: state
-			.set('isCommentLoading', false)
 			.set('error', payload),
 
 		[ACTION_TYPE.FETCH_POEM_REQUEST]: state
