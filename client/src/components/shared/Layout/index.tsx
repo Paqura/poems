@@ -29,7 +29,7 @@ const
 
 			props.checkAuthUser();
 		});
-		console.log('1232aaaa2');
+
 		return (
 			<>
 				{props.show && <Header hasRegister={props.hasRegister} />}
