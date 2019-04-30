@@ -20,6 +20,13 @@ const deleteCommentFromState = (comments: TComment[], commentId: string) => {
 	return comments.filter(comment => comment._id !== commentId);
 };
 
+const modifyComments = (comments: TComment[], updated: TComment) => {
+	if(!updated) return comments;
+
+	const index = comments.findIndex(el => el._id === updated._id);
+	return comments.map((it: any, idx: number) => idx === index ? updated : it);
+};
+
 const ACTION_TYPE = {
 	FETCH_POEM_REQUEST: 'FETCH_POEM_REQUEST',
 	FETCH_POEM_SUCCESS: 'FETCH_POEM_SUCCESS',
@@ -121,13 +128,6 @@ const PoemShema = Record({
 	isPoemLoading: false,
 	error: null,
 });
-
-const modifyComments = (comments: TComment[], updated: TComment) => {
-	if(!updated) return comments;
-
-	const index = comments.findIndex(el => el._id === updated._id);
-	return comments.map((it: any, idx: number) => idx === index ? updated : it);
-};
 
 export const reducer = (state: TPoemState = new PoemShema(), action: TAction): TPoemState => {
 	const {type, payload} = action;
