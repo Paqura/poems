@@ -3,6 +3,7 @@ import {all, call, put, takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
 import settings from 'src/settings';
 import jwt_decode from 'jwt-decode';
+import {SagaIterator} from 'redux-saga';
 
 export type TUserDataFromJWT = {
 	firstName: string;
@@ -45,11 +46,11 @@ export const signUpRequest = (payload: {
 	payload,
 });
 
-export const checkAuthUser = () => ({
+export const checkAuthUser = (): TAction => ({
 	type: ACTION_TYPE.CHECK_AUTH_USER,
 });
 
-const checkAuthUserSaga = function* (): any {
+const checkAuthUserSaga = function* (): SagaIterator {
 	const candidate = localStorage.getItem('currentUser');
 	const currentUser = candidate && JSON.parse(candidate);
 
@@ -59,7 +60,7 @@ const checkAuthUserSaga = function* (): any {
 	});
 };
 
-const signInSaga = function* (action: TAction): any {
+const signInSaga = function* (action: TAction): SagaIterator {
 	try {
 		const response = yield call(axios.post, settings.AUTH_API.SING_IN, action.payload);
 		const decodedUserData: TUserDataFromJWT = jwt_decode(response.data.token);
@@ -83,7 +84,7 @@ const signInSaga = function* (action: TAction): any {
 	}
 };
 
-const signUpSaga = function* (action: TAction): any {
+const signUpSaga = function* (action: TAction): SagaIterator {
 	try {
 		const response = yield call(axios.post, settings.AUTH_API.SING_UP, action.payload);
 
@@ -108,13 +109,19 @@ const logoutSaga = function* (): any {
 	yield localStorage.clear();
 };
 
-export const saga = function* (): any {
+export const saga = function* (): SagaIterator {
 	yield all([
 		yield takeEvery(ACTION_TYPE.SIGN_IN_REQUEST, signInSaga),
 		yield takeEvery(ACTION_TYPE.SIGN_UP_REQUEST, signUpSaga),
 		yield takeEvery(ACTION_TYPE.LOGOUT, logoutSaga),
 		yield takeEvery(ACTION_TYPE.CHECK_AUTH_USER, checkAuthUserSaga),
 	]);
+};
+
+type TState = {
+	currentUser: any,
+	errorMessage: any,
+	loading: boolean,
 };
 
 const
@@ -124,7 +131,7 @@ const
 		loading     : false,
 	};
 
-export const reducer = (state = InitialState, action: TAction): any => ({
+export const reducer = (state = InitialState, action: TAction): TState => ({
 	[ACTION_TYPE.SIGN_IN_REQUEST]: {
 		...state,
 		loading: true,
@@ -152,12 +159,14 @@ export const reducer = (state = InitialState, action: TAction): any => ({
 	},
 
 	[ACTION_TYPE.LOGOUT]: {
+		...state,
 		currentUser: null,
 		errorMessage: null,
 		loading: false,
 	},
 
 	[ACTION_TYPE.SET_USER_INFO]: {
+		...state,
 		currentUser: action.payload,
 	},
 })[action.type] || state;
